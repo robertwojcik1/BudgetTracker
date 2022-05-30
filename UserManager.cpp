@@ -6,7 +6,7 @@ void UserManager::userRegister()
 
     users.push_back(user);
 
-    //fileWithUsers.addUserToFile(user);
+    fileWithUsers.addUserToFile(user);
 
     cin.sync();
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
