@@ -2,12 +2,14 @@
 #define BUDGETTRACKER_H
 
 #include <iostream>
+#include "UserManager.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;
 
 class BudgetTracker
 {
+    UserManager userManager;
 
 public:
     bool isUserLoggedIn();

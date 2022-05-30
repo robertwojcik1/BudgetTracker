@@ -18,44 +18,45 @@ char AuxiliaryMethods::getChar()
     }
     return character;
 }
-/*
-string MetodyPomocnicze::konwerjsaIntNaString(int liczba)
+
+string AuxiliaryMethods::getLine()
+{
+    string input = "";
+    getline(cin, input);
+    return input;
+}
+
+
+string AuxiliaryMethods::IntToStringConversion(int number)
 {
     ostringstream ss;
-    ss << liczba;
+    ss << number;
     string str = ss.str();
     return str;
 }
 
-int MetodyPomocnicze::konwersjaStringNaInt(string liczba)
+int AuxiliaryMethods::stringToIntConversion(string number)
 {
-    int liczbaInt;
-    istringstream iss(liczba);
-    iss >> liczbaInt;
+    int numberInt;
+    istringstream iss(number);
+    iss >> numberInt;
 
-    return liczbaInt;
+    return numberInt;
 }
 
-string MetodyPomocnicze::wczytajLinie()
+int AuxiliaryMethods::getInteger()
 {
-    string wejscie = "";
-    getline(cin, wejscie);
-    return wejscie;
-}
-
-int MetodyPomocnicze::wczytajLiczbeCalkowita()
-{
-    string wejscie = "";
-    int liczba = 0;
+    string input = "";
+    int number = 0;
 
     while (true)
     {
-        getline(cin, wejscie);
+        getline(cin, input);
 
-        stringstream myStream(wejscie);
-        if (myStream >> liczba)
+        stringstream myStream(input);
+        if (myStream >> number)
             break;
         cout << "To nie jest liczba. Wpisz ponownie. " << endl;
     }
-    return liczba;
-} */
+    return number;
+}

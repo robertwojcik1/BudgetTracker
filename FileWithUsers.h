@@ -13,6 +13,8 @@ using namespace std;
 class FileWithUsers
 {
 
+public:
+    void addUserToFile(User user);
 };
 
 #endif

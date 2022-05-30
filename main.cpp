@@ -17,13 +17,13 @@ int main()
             switch(select)
             {
             case '1':
-               // budgetTracker.userRegister();
+                budgetTracker.userRegister();
                 break;
             case '2':
                // budgetTracker.userLogin();
                 break;
             case '9':
-                //budgetTracker.exitProgram();
+                budgetTracker.exitProgram();
                 break;
             default:
                // budgetTracker.incorrectSelectOfMenuOptions();

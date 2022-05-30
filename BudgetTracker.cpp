@@ -5,7 +5,8 @@ char BudgetTracker::selectOptionFromMainMenu()
     char select;
 
     system("cls");
-    cout << "    >>> MENU  GLOWNE <<<" << endl;
+    cout << " ***APLIKACJA BUDZETOWA***    " << endl;
+    cout << "   >>> MENU  GLOWNE <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Rejestracja" << endl;
     cout << "2. Logowanie" << endl;
@@ -15,4 +16,15 @@ char BudgetTracker::selectOptionFromMainMenu()
     select = AuxiliaryMethods::getChar();
 
     return select;
+}
+
+void BudgetTracker::exitProgram()
+{
+    cout << "Koniec programu." << endl;
+    exit(0);
+}
+
+void BudgetTracker::userRegister()
+{
+    userManager.userRegister();
 }
