@@ -10,9 +10,9 @@ int main()
 
     while(true)
     {
-        //if(!budgetTracker.isUserLoggedIn())
+       // if(!budgetTracker.isUserLoggedIn())
         {
-           // select = budgetTracker.selectoptionFromMainMenu();
+            select = budgetTracker.selectOptionFromMainMenu();
 
             switch(select)
             {
