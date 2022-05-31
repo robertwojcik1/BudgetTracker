@@ -34,3 +34,13 @@ void BudgetTracker::incorrectSelectOfMenuOptions()
     cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
     system("pause");
 }
+
+bool BudgetTracker::isUserLoggedIn()
+{
+    userManager.isUserLoggedIn();
+}
+
+void BudgetTracker::userLogin()
+{
+    userManager.userLogin();
+}

@@ -12,6 +12,7 @@ using namespace std;
 
 class UserManager
 {
+    int loggedInUserId;
     vector<User> users;
     FileWithUsers fileWithUsers;
     User enterNewUserData();
@@ -21,8 +22,11 @@ public:
     UserManager()
     {
         users = fileWithUsers.loadUsersFromFile();
+        loggedInUserId = 0;
     }
     void userRegister();
+    bool isUserLoggedIn();
+    void userLogin();
 };
 
 #endif

@@ -10,7 +10,7 @@ int main()
 
     while(true)
     {
-       // if(!budgetTracker.isUserLoggedIn())
+        if(!budgetTracker.isUserLoggedIn())
         {
             select = budgetTracker.selectOptionFromMainMenu();
 
@@ -20,7 +20,7 @@ int main()
                 budgetTracker.userRegister();
                 break;
             case '2':
-               // budgetTracker.userLogin();
+                budgetTracker.userLogin();
                 break;
             case '9':
                 budgetTracker.exitProgram();
