@@ -1,6 +1,6 @@
 #include "FileWithUsers.h"
 
-void FileWithdUseUsers::adrToFile(User user)
+void FileWithUsers::addUserToFile(User user)
 {
     xml.ResetPos();
     xml.FindElem();
@@ -23,7 +23,7 @@ vector<User> FileWithUsers::loadUsersFromFile()
 
     xml.FindElem();
     xml.IntoElem();
-    while ( xml.FindElem("User") )
+    while (xml.FindElem("User"))
     {
         xml.IntoElem();
         xml.FindElem( "UserId" );
@@ -40,4 +40,24 @@ vector<User> FileWithUsers::loadUsersFromFile()
         users.push_back(user);
     }
     return users;
+}
+
+void FileWithUsers::changePasswordInFile(string newPassword, int loggedInUserId)
+{
+    xml.ResetPos();
+    xml.FindElem();
+    xml.IntoElem();
+    while (xml.FindElem("User"))
+    {
+        xml.IntoElem();
+        xml.FindElem( "UserId" );
+        if(xml.GetData() == AuxiliaryMethods::IntToStringConversion(loggedInUserId))
+        {
+            xml.FindElem( "Password" );
+            xml.RemoveElem();
+            xml.AddElem("Password", newPassword);
+        }
+        xml.OutOfElem();
+    }
+    xml.Save("users.xml");
 }

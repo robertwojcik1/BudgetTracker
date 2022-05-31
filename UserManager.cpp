@@ -126,5 +126,5 @@ void UserManager::changePassword()
             system("pause");
         }
     }
-    //+ zapisz do pliku
+    fileWithUsers.changePasswordInFile(newPassword, loggedInUserId);
 }
