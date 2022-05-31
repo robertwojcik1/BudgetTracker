@@ -18,6 +18,8 @@ public:
     void userLogin();
     void exitProgram();
     void incorrectSelectOfMenuOptions();
+    char selectOptionFromUserMenu();
+    void logOut();
 };
 
 #endif

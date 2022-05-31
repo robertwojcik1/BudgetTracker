@@ -27,6 +27,7 @@ public:
     void userRegister();
     bool isUserLoggedIn();
     void userLogin();
+    void logOut();
 };
 
 #endif

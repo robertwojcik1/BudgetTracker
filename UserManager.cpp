@@ -105,3 +105,8 @@ void UserManager::userLogin()
     system("pause");
     return;
 }
+
+void UserManager::logOut()
+{
+    loggedInUserId = 0;
+}

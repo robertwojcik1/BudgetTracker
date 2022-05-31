@@ -30,6 +30,38 @@ int main()
                 break;
             }
         }
+        else
+        {
+            select = budgetTracker.selectOptionFromUserMenu();
+
+            switch (select)
+            {
+            case '1':
+                // budgetTracker.addIncome();
+                break;
+            case '2':
+                // budgetTracker.addExpense();
+                break;
+            case '3':
+                // budgetTracker.printBalanceFromCurrentMonth();
+                break;
+            case '4':
+                // budgetTracker.printBalanceFromPreviousMonth();
+                break;
+            case '5':
+                // budgetTracker.printBalanceOfSelectedPeriod();
+                break;
+            case '6':
+                // budgetTracker.changePassword();
+                break;
+            case '7':
+                budgetTracker.logOut();
+                break;
+            default:
+                budgetTracker.incorrectSelectOfMenuOptions();
+                break;
+            }
+        }
     }
     return 0;
 }
