@@ -28,6 +28,7 @@ public:
     bool isUserLoggedIn();
     void userLogin();
     void logOut();
+    void changePassword();
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "FileWithUsers.h"
 
-void FileWithUsers::addUserToFile(User user)
+void FileWithdUseUsers::adrToFile(User user)
 {
     xml.ResetPos();
     xml.FindElem();

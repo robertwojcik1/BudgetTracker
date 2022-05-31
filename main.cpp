@@ -52,7 +52,7 @@ int main()
                 // budgetTracker.printBalanceOfSelectedPeriod();
                 break;
             case '6':
-                // budgetTracker.changePassword();
+                budgetTracker.changePassword();
                 break;
             case '7':
                 budgetTracker.logOut();

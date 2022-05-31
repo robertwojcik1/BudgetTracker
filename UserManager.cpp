@@ -110,3 +110,21 @@ void UserManager::logOut()
 {
     loggedInUserId = 0;
 }
+
+void UserManager::changePassword()
+{
+    string newPassword = "";
+    cout << "Podaj nowe haslo: ";
+    newPassword = AuxiliaryMethods::getLine();
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+    {
+        if (itr -> getUserId() == loggedInUserId)
+        {
+            itr -> setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl << endl;
+            system("pause");
+        }
+    }
+    //+ zapisz do pliku
+}

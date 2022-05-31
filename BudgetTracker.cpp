@@ -71,3 +71,8 @@ void BudgetTracker::logOut()
 {
     userManager.logOut();
 }
+
+void BudgetTracker::changePassword()
+{
+    userManager.changePassword();
+}

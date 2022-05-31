@@ -20,6 +20,7 @@ public:
     void incorrectSelectOfMenuOptions();
     char selectOptionFromUserMenu();
     void logOut();
+    void changePassword();
 };
 
 #endif
