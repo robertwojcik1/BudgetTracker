@@ -2,9 +2,7 @@
 #define FILEWITHUSERS_H
 #include <iostream>
 #include <vector>
-//#include <fstream>
 #include <cstdlib>
-
 #include "User.h"
 #include "AuxiliaryMethods.h"
 #include "Markup.h"
@@ -26,6 +24,7 @@ public:
         }
     }
     void addUserToFile(User user);
+    vector<User> loadUsersFromFile();
 };
 
 #endif

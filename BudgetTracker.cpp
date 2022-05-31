@@ -28,3 +28,9 @@ void BudgetTracker::userRegister()
 {
     userManager.userRegister();
 }
+
+void BudgetTracker::incorrectSelectOfMenuOptions()
+{
+    cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+    system("pause");
+}

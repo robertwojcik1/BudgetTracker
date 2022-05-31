@@ -26,7 +26,7 @@ int main()
                 budgetTracker.exitProgram();
                 break;
             default:
-               // budgetTracker.incorrectSelectOfMenuOptions();
+                budgetTracker.incorrectSelectOfMenuOptions();
                 break;
             }
         }

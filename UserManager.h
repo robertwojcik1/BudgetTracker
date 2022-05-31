@@ -3,7 +3,6 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-//#include <fstream>
 #include <sstream>
 #include "User.h"
 #include "FileWithUsers.h"
@@ -13,12 +12,16 @@ using namespace std;
 
 class UserManager
 {
-    vector <User> users;
+    vector<User> users;
     FileWithUsers fileWithUsers;
     User enterNewUserData();
     int getNewUserId();
     bool isLoginExists(string login);
 public:
+    UserManager()
+    {
+        users = fileWithUsers.loadUsersFromFile();
+    }
     void userRegister();
 };
 
