@@ -37,7 +37,7 @@ int main()
             switch (select)
             {
             case '1':
-                // budgetTracker.addIncome();
+                budgetTracker.addIncome();
                 break;
             case '2':
                 // budgetTracker.addExpense();

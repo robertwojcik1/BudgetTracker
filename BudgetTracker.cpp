@@ -76,3 +76,8 @@ void BudgetTracker::changePassword()
 {
     userManager.changePassword();
 }
+
+void BudgetTracker::addIncome()
+{
+    userManager.addIncome();
+}

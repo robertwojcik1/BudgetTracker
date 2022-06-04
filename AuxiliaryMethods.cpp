@@ -27,7 +27,7 @@ string AuxiliaryMethods::getLine()
 }
 
 
-string AuxiliaryMethods::IntToStringConversion(int number)
+string AuxiliaryMethods::intToStringConversion(int number)
 {
     ostringstream ss;
     ss << number;

@@ -128,3 +128,8 @@ void UserManager::changePassword()
     }
     fileWithUsers.changePasswordInFile(newPassword, loggedInUserId);
 }
+
+void UserManager::addIncome()
+{
+    income.addIncome(loggedInUserId);
+}

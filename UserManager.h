@@ -7,14 +7,19 @@
 #include "User.h"
 #include "FileWithUsers.h"
 #include "AuxiliaryMethods.h"
+#include "Income.h"
+#include "Expense.h"
 
 using namespace std;
 
 class UserManager
 {
+    Income income;
+    Expense expense;
+    FileWithUsers fileWithUsers;
     int loggedInUserId;
     vector<User> users;
-    FileWithUsers fileWithUsers;
+
     User enterNewUserData();
     int getNewUserId();
     bool isLoginExists(string login);
@@ -29,6 +34,7 @@ public:
     void userLogin();
     void logOut();
     void changePassword();
+    void addIncome();
 };
 
 #endif
