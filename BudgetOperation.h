@@ -6,6 +6,11 @@ using namespace std;
 
 class BudgetOperation
 {
+    int userId;
+    string date;
+    string item;
+    string amount;
+
 
 };
 

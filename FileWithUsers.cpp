@@ -51,7 +51,7 @@ void FileWithUsers::changePasswordInFile(string newPassword, int loggedInUserId)
     {
         xml.IntoElem();
         xml.FindElem( "UserId" );
-        if(xml.GetData() == AuxiliaryMethods::IntToStringConversion(loggedInUserId))
+        if(xml.GetData() == AuxiliaryMethods::intToStringConversion(loggedInUserId))
         {
             xml.FindElem( "Password" );
             xml.RemoveElem();
