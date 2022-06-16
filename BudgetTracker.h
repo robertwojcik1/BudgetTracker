@@ -21,6 +21,7 @@ public:
     char selectOptionFromUserMenu();
     void logOut();
     void changePassword();
+    void addIncome();
 };
 
 #endif
