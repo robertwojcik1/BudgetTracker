@@ -12,7 +12,7 @@ void Income::addIncome(int loggedInUserId)
         Income::addIncomeWithCurrentDate(loggedInUserId);
         break;
     case '2':
-
+        Income::addIncomeWithEnteredDate(loggedInUserId);
         break;
     case '9':
         return;
@@ -103,5 +103,47 @@ string Income::enterIncomeAmount()
     incomeAmount = AuxiliaryMethods::getLine();
 
     return incomeAmount;
+}
+
+void Income::addIncomeWithEnteredDate(int loggedInUserId)
+{
+    Income income;
+    string date = "", incomeCategory = "", incomeAmount = "";
+    char select;
+
+    system("cls");
+    cout << " ***APLIKACJA BUDZETOWA***    " << endl;
+    cout << "Wpisz date w formacie rrrr-mm-dd: ";
+    date = AuxiliaryMethods::getLine();
+
+    if(Date::isDateCorrect(date))
+    {
+        select = selectIncomeCategory();
+        switch(select)
+        {
+        case '1':
+            incomeCategory = "Wyplata";
+            break;
+        case '2':
+            incomeCategory = "Sprzedaz internetowa";
+            break;
+        case '3':
+            incomeCategory = enterIncomeCategory();
+            break;
+        case '9':
+            return;
+        default:
+            cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+            system("pause");
+        }
+        incomeAmount = enterIncomeAmount();
+        fileWithIncomes.addIncomeToFile(loggedInUserId, date, incomeCategory, incomeAmount);
+    }
+    else
+    {
+        cout << "Wprowadzona data jest nieprawidlowa!" << endl;
+        system("pause");
+        return;
+    }
 }
 

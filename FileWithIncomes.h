@@ -9,7 +9,6 @@ class FileWithIncomes
 {
     CMarkup incomesXml;
     int incomeId;
-   // int lastIncomeId;
 public:
     FileWithIncomes()
     {

@@ -15,6 +15,8 @@ void FileWithIncomes::addIncomeToFile(int loggedInUserId, string date, string in
     incomesXml.AddElem("amount", incomeAmount);
     incomesXml.ResetPos();
     incomesXml.Save("incomes.xml");
+    cout << "Pomyslnie dodano przychod." << endl;
+    system("pause");
 }
 
 int FileWithIncomes::getLastIncomeId()

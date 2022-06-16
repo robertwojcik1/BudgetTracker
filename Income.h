@@ -17,6 +17,7 @@ class Income : public BudgetOperation
     int lastIncomeId;
 
     void addIncomeWithCurrentDate(int loggedInUserId);
+    void addIncomeWithEnteredDate(int loggedInUserId);
     char selectIncomeCategory();
     string enterIncomeCategory();
     string enterIncomeAmount();
