@@ -35,6 +35,7 @@ public:
     void logOut();
     void changePassword();
     void addIncome();
+    void addExpense();
 };
 
 #endif

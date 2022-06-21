@@ -133,3 +133,8 @@ void UserManager::addIncome()
 {
     income.addIncome(loggedInUserId);
 }
+
+void UserManager::addExpense()
+{
+    expense.addExpense(loggedInUserId);
+}

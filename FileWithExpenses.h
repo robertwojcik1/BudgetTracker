@@ -1,12 +1,30 @@
 #ifndef FILEWITHEXPENSES_H
 #define FILEWITHEXPENSES_H
 #include <iostream>
+#include "Markup.h"
 
 using namespace std;
 
 class FileWithExpenses
 {
+    CMarkup expensesXml;
+    int expenseId;
+public:
+    FileWithExpenses()
+    {
+    bool fileExists = expensesXml.Load( "expenses.xml" );
 
+        if (!fileExists)
+        {
+            expensesXml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+            expensesXml.AddElem("Expenses");
+            expenseId = 0;
+        }
+        else
+          expenseId = getLastExpenseId();
+    }
+    void addExpenseToFile( int loggedInUserId, string date, string expenseCategory, string expenseAmount);
+    int getLastExpenseId();
 };
 
 #endif

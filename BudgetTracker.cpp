@@ -81,3 +81,8 @@ void BudgetTracker::addIncome()
 {
     userManager.addIncome();
 }
+
+void BudgetTracker::addExpense()
+{
+    userManager.addExpense();
+}
