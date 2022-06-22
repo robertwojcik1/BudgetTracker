@@ -54,7 +54,7 @@ int main()
             case '6':
                 budgetTracker.changePassword();
                 break;
-            case '7':
+            case '9':
                 budgetTracker.logOut();
                 break;
             default:

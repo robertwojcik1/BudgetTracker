@@ -59,7 +59,7 @@ char BudgetTracker::selectOptionFromUserMenu()
     cout << "4. Bilans z poprzedniego miesiaca" << endl;
     cout << "5. Bilans z wybranego okresu" << endl;
     cout << "6. Zmien haslo" << endl;
-    cout << "7. Wyloguj sie" << endl;
+    cout << "9. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     select = AuxiliaryMethods::getChar();

@@ -19,6 +19,7 @@ class Expense : public BudgetOperation
     char selectExpenseCategory();
     string enterExpenseCategory();
     string enterExpenseAmount();
+    void addExpenseWithEnteredDate(int loggedInUserId);
 public:
     void addExpense(int loggedInUserId);
 };

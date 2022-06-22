@@ -12,7 +12,7 @@ void Expense::addExpense(int loggedInUserId)
         Expense::addExpenseWithCurrentDate(loggedInUserId);
         break;
     case '2':
-        //Income::addIncomeWithEnteredDate(loggedInUserId);
+        Expense::addExpenseWithEnteredDate(loggedInUserId);
         break;
     case '9':
         return;
@@ -111,4 +111,52 @@ string Expense::enterExpenseAmount()
     expenseAmount = AuxiliaryMethods::getLine();
 
     return expenseAmount;
+}
+
+void Expense::addExpenseWithEnteredDate(int loggedInUserId)
+{
+    Expense expense;
+    string date = "", expenseCategory = "", expenseAmount = "";
+    char select;
+
+    system("cls");
+    cout << " ***APLIKACJA BUDZETOWA***    " << endl;
+    cout << "Wpisz date w formacie rrrr-mm-dd: ";
+    date = AuxiliaryMethods::getLine();
+
+    if(Date::isDateCorrect(date))
+    {
+        select = selectExpenseCategory();
+        switch(select)
+        {
+        case '1':
+            expenseCategory = "Rachunki";
+            break;
+        case '2':
+            expenseCategory = "Kredyt";
+            break;
+        case '3':
+            expenseCategory = "Raty";
+            break;
+        case '4':
+            expenseCategory = "Zakupy";
+            break;
+        case '5':
+            expenseCategory = enterExpenseCategory();
+            break;
+        case '9':
+            return;
+        default:
+            cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+            system("pause");
+        }
+        expenseAmount = enterExpenseAmount();
+        fileWithExpenses.addExpenseToFile(loggedInUserId, date, expenseCategory, expenseAmount);
+    }
+    else
+    {
+        cout << "Wprowadzona data jest nieprawidlowa!" << endl;
+        system("pause");
+        return;
+    }
 }
