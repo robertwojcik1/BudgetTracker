@@ -71,6 +71,13 @@ void Expense::addExpenseWithCurrentDate(int loggedInUserId)
         system("pause");
     }
     expenseAmount = enterExpenseAmount();
+    expense.setId(fileWithExpenses.getLastExpenseId());
+    expense.setUserId(loggedInUserId);
+    expense.setDate(date);
+    expense.setItem(expenseCategory);
+    expense.setAmount(expenseAmount);
+    expenses.push_back(expense);
+
     fileWithExpenses.addExpenseToFile(loggedInUserId, date, expenseCategory, expenseAmount);
 }
 
@@ -151,6 +158,13 @@ void Expense::addExpenseWithEnteredDate(int loggedInUserId)
             system("pause");
         }
         expenseAmount = enterExpenseAmount();
+        expense.setId(fileWithExpenses.getLastExpenseId());
+        expense.setUserId(loggedInUserId);
+        expense.setDate(date);
+        expense.setItem(expenseCategory);
+        expense.setAmount(expenseAmount);
+        expenses.push_back(expense);
+
         fileWithExpenses.addExpenseToFile(loggedInUserId, date, expenseCategory, expenseAmount);
     }
     else

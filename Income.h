@@ -13,7 +13,7 @@ class Income : public BudgetOperation
 {
     FileWithIncomes fileWithIncomes;
     vector<Income> incomes;
-    int incomeId;
+    //int incomeId;
     int lastIncomeId;
 
     void addIncomeWithCurrentDate(int loggedInUserId);
@@ -22,7 +22,7 @@ class Income : public BudgetOperation
     string enterIncomeCategory();
     string enterIncomeAmount();
 public:
-    Income(int incomeId = 0, int userId = 0, string date = "", string item = "", string amount = "")
+    Income(int id = 0, int userId = 0, string date = "", string item = "", string amount = "")
     {
 
     }

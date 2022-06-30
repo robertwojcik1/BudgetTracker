@@ -21,6 +21,10 @@ class Expense : public BudgetOperation
     string enterExpenseAmount();
     void addExpenseWithEnteredDate(int loggedInUserId);
 public:
+    Expense(int id = 0, int userId = 0, string date = "", string item = "", string amount = "")
+    {
+
+    }
     void addExpense(int loggedInUserId);
 };
 

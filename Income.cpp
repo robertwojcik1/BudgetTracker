@@ -65,6 +65,13 @@ void Income::addIncomeWithCurrentDate(int loggedInUserId)
         system("pause");
     }
     incomeAmount = enterIncomeAmount();
+    income.setId(fileWithIncomes.getLastIncomeId());
+    income.setUserId(loggedInUserId);
+    income.setDate(date);
+    income.setItem(incomeCategory);
+    income.setAmount(incomeAmount);
+    incomes.push_back(income);
+
     fileWithIncomes.addIncomeToFile(loggedInUserId, date, incomeCategory, incomeAmount);
 }
 
@@ -137,6 +144,13 @@ void Income::addIncomeWithEnteredDate(int loggedInUserId)
             system("pause");
         }
         incomeAmount = enterIncomeAmount();
+        income.setId(fileWithIncomes.getLastIncomeId());
+        income.setUserId(loggedInUserId);
+        income.setDate(date);
+        income.setItem(incomeCategory);
+        income.setAmount(incomeAmount);
+        incomes.push_back(income);
+
         fileWithIncomes.addIncomeToFile(loggedInUserId, date, incomeCategory, incomeAmount);
     }
     else
