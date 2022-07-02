@@ -32,3 +32,35 @@ int FileWithIncomes::getLastIncomeId()
     }
     return incomeId;
 }
+
+vector<Income> FileWithIncomes::loadIncomesFromFile()
+{
+    Income income;
+    vector <Income> incomes;
+
+    incomesXml.Load("incomes.xml");
+    incomesXml.FindElem();
+    incomesXml.IntoElem();
+    while (incomesXml.FindElem("Income"))
+    {
+        incomesXml.IntoElem();
+        incomesXml.FindElem( "incomeId" );
+        income.setId(atoi( MCD_2PCSZ(incomesXml.GetData()) ));
+        incomesXml.FindElem( "userId" );
+        income.setUserId(atoi(MCD_2PCSZ(incomesXml.GetData()) ));
+        incomesXml.FindElem( "date" );
+        income.setDate(incomesXml.GetData());
+        incomesXml.FindElem( "item" );
+        income.setItem(incomesXml.GetData());
+        incomesXml.FindElem( "amount" );
+        income.setAmount(incomesXml.GetData());
+        incomesXml.OutOfElem();
+        incomes.push_back(income);
+    }
+    return incomes;
+}
+
+int FileWithIncomes::getIncomeId()
+{
+    return incomeId;
+}

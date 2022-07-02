@@ -23,6 +23,7 @@ public:
     void changePassword();
     void addIncome();
     void addExpense();
+    void printBalanceFromCurrentMonth();
 };
 
 #endif

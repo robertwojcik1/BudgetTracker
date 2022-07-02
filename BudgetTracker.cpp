@@ -86,3 +86,8 @@ void BudgetTracker::addExpense()
 {
     userManager.addExpense();
 }
+
+void BudgetTracker::printBalanceFromCurrentMonth()
+{
+    userManager.printBalanceFromCurrentMonth();
+}

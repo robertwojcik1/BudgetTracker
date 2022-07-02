@@ -2,6 +2,7 @@
 #define FILEWITHINCOMES_H
 #include <iostream>
 #include "Markup.h"
+#include "Income.h"
 
 using namespace std;
 
@@ -25,6 +26,8 @@ public:
     }
     void addIncomeToFile( int loggedInUserId, string date, string incomeCategory, string incomeAmount);
     int getLastIncomeId();
+    int getIncomeId();
+    vector<Income> loadIncomesFromFile();
 };
 
 #endif

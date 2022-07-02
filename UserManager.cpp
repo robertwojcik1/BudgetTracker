@@ -131,10 +131,15 @@ void UserManager::changePassword()
 
 void UserManager::addIncome()
 {
-    income.addIncome(loggedInUserId);
+    operationManager.addIncome(loggedInUserId);
 }
 
 void UserManager::addExpense()
 {
-    expense.addExpense(loggedInUserId);
+    operationManager.addExpense(loggedInUserId);
+}
+
+void UserManager::printBalanceFromCurrentMonth()
+{
+    operationManager.printBalanceFromCurrentMonth();
 }

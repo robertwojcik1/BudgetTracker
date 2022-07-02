@@ -2,6 +2,7 @@
 #define FILEWITHEXPENSES_H
 #include <iostream>
 #include "Markup.h"
+#include "Expense.h"
 
 using namespace std;
 
@@ -25,6 +26,8 @@ public:
     }
     void addExpenseToFile( int loggedInUserId, string date, string expenseCategory, string expenseAmount);
     int getLastExpenseId();
+    int getExpenseId();
+    vector <Expense> loadExpensesFromFile();
 };
 
 #endif

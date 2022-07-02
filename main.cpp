@@ -43,7 +43,7 @@ int main()
                 budgetTracker.addExpense();
                 break;
             case '3':
-                // budgetTracker.printBalanceFromCurrentMonth();
+                budgetTracker.printBalanceFromCurrentMonth();
                 break;
             case '4':
                 // budgetTracker.printBalanceFromPreviousMonth();

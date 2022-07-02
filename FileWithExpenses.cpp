@@ -32,3 +32,35 @@ int FileWithExpenses::getLastExpenseId()
     }
     return expenseId;
 }
+
+int FileWithExpenses::getExpenseId()
+{
+    return expenseId;
+}
+
+vector <Expense> FileWithExpenses::loadExpensesFromFile()
+{
+    Expense expense;
+    vector <Expense> expenses;
+
+    expensesXml.Load("expenses.xml");
+    expensesXml.FindElem();
+    expensesXml.IntoElem();
+    while (expensesXml.FindElem("Expense"))
+    {
+        expensesXml.IntoElem();
+        expensesXml.FindElem( "expenseId" );
+        expense.setId(atoi( MCD_2PCSZ(expensesXml.GetData()) ));
+        expensesXml.FindElem( "userId" );
+        expense.setUserId(atoi(MCD_2PCSZ(expensesXml.GetData()) ));
+        expensesXml.FindElem( "date" );
+        expense.setDate(expensesXml.GetData());
+        expensesXml.FindElem( "item" );
+        expense.setItem(expensesXml.GetData());
+        expensesXml.FindElem( "amount" );
+        expense.setAmount(expensesXml.GetData());
+        expensesXml.OutOfElem();
+        expenses.push_back(expense);
+    }
+    return expenses;
+}

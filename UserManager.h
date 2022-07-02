@@ -9,11 +9,13 @@
 #include "AuxiliaryMethods.h"
 #include "Income.h"
 #include "Expense.h"
+#include "OperationManager.h"
 
 using namespace std;
 
 class UserManager
 {
+    OperationManager operationManager;
     Income income;
     Expense expense;
     FileWithUsers fileWithUsers;
@@ -36,6 +38,7 @@ public:
     void changePassword();
     void addIncome();
     void addExpense();
+    void printBalanceFromCurrentMonth();
 };
 
 #endif

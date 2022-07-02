@@ -5,27 +5,18 @@
 #include "AuxiliaryMethods.h"
 #include "Date.h"
 #include "BudgetOperation.h"
-#include "FileWithExpenses.h"
 
 using namespace std;
 
 class Expense : public BudgetOperation
 {
-    FileWithExpenses fileWithExpenses;
-    vector<Expense> expenses;
-
-    char selectOptionFromAddExpenseMenu();
-    void addExpenseWithCurrentDate(int loggedInUserId);
-    char selectExpenseCategory();
-    string enterExpenseCategory();
-    string enterExpenseAmount();
-    void addExpenseWithEnteredDate(int loggedInUserId);
+    int lastIncomeId;
 public:
     Expense(int id = 0, int userId = 0, string date = "", string item = "", string amount = "")
     {
 
     }
-    void addExpense(int loggedInUserId);
+
 };
 
 #endif
