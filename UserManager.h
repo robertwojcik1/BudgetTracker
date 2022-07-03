@@ -7,8 +7,8 @@
 #include "User.h"
 #include "FileWithUsers.h"
 #include "AuxiliaryMethods.h"
-#include "Income.h"
-#include "Expense.h"
+//#include "Income.h"
+//#include "Expense.h"
 #include "OperationManager.h"
 
 using namespace std;
@@ -16,8 +16,8 @@ using namespace std;
 class UserManager
 {
     OperationManager operationManager;
-    Income income;
-    Expense expense;
+    //Income income;
+   // Expense expense;
     FileWithUsers fileWithUsers;
     int loggedInUserId;
     vector<User> users;
@@ -39,6 +39,8 @@ public:
     void addIncome();
     void addExpense();
     void printBalanceFromCurrentMonth();
+    void printBalanceFromPreviousMonth();
+    void printBalanceOfSelectedPeriod();
 };
 
 #endif

@@ -46,10 +46,10 @@ int main()
                 budgetTracker.printBalanceFromCurrentMonth();
                 break;
             case '4':
-                // budgetTracker.printBalanceFromPreviousMonth();
+                budgetTracker.printBalanceFromPreviousMonth();
                 break;
             case '5':
-                // budgetTracker.printBalanceOfSelectedPeriod();
+                budgetTracker.printBalanceOfSelectedPeriod();
                 break;
             case '6':
                 budgetTracker.changePassword();

@@ -91,3 +91,13 @@ void BudgetTracker::printBalanceFromCurrentMonth()
 {
     userManager.printBalanceFromCurrentMonth();
 }
+
+void BudgetTracker::printBalanceFromPreviousMonth()
+{
+    userManager.printBalanceFromPreviousMonth();
+}
+
+void BudgetTracker::printBalanceOfSelectedPeriod()
+{
+    userManager.printBalanceOfSelectedPeriod();
+}

@@ -24,6 +24,8 @@ public:
     void addIncome();
     void addExpense();
     void printBalanceFromCurrentMonth();
+    void printBalanceFromPreviousMonth();
+    void printBalanceOfSelectedPeriod();
 };
 
 #endif

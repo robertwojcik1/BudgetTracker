@@ -40,6 +40,8 @@ public:
     char selectOptionFromAddIncomeMenu();
     void addExpense(int loggedInUserId);
     void printBalanceFromCurrentMonth();
+    void printBalanceFromPreviousMonth();
+    void printBalanceOfSelectedPeriod();
 };
 
 #endif

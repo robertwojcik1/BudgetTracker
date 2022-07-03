@@ -143,3 +143,13 @@ void UserManager::printBalanceFromCurrentMonth()
 {
     operationManager.printBalanceFromCurrentMonth();
 }
+
+void UserManager::printBalanceFromPreviousMonth()
+{
+    operationManager.printBalanceFromPreviousMonth();
+}
+
+void UserManager::printBalanceOfSelectedPeriod()
+{
+    operationManager.printBalanceOfSelectedPeriod();
+}
