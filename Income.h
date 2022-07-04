@@ -14,7 +14,7 @@ class Income : public BudgetOperation
     int lastIncomeId;
 
 public:
-    Income(int id = 0, int userId = 0, string date = "", string item = "", string amount = "")
+    Income(int id = 0, int userId = 0, string date = "", string item = "", double amount = 0.0)
     {
 
     }

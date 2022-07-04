@@ -10,6 +10,8 @@ class FileWithExpenses
 {
     CMarkup expensesXml;
     int expenseId;
+
+    string doubleToStringConversion(double number);
 public:
     FileWithExpenses()
     {
@@ -24,7 +26,7 @@ public:
         else
           expenseId = getLastExpenseId();
     }
-    void addExpenseToFile( int loggedInUserId, string date, string expenseCategory, string expenseAmount);
+    void addExpenseToFile( int loggedInUserId, string date, string expenseCategory, double expenseAmount);
     int getLastExpenseId();
     int getExpenseId();
     vector <Expense> loadExpensesFromFile();

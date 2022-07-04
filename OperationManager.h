@@ -2,6 +2,7 @@
 #define OPERATIONMANAGER_H
 #include <iostream>
 #include <vector>
+#include <string>
 #include "FileWithIncomes.h"
 #include "FileWithExpenses.h"
 #include "Income.h"
@@ -22,12 +23,12 @@ class OperationManager
     void addIncomeWithEnteredDate(int loggedInUserId);
     char selectIncomeCategory();
     string enterIncomeCategory();
-    string enterIncomeAmount();
+    double enterIncomeAmount();
     char selectOptionFromAddExpenseMenu();
     void addExpenseWithCurrentDate(int loggedInUserId);
     char selectExpenseCategory();
     string enterExpenseCategory();
-    string enterExpenseAmount();
+    double enterExpenseAmount();
     void addExpenseWithEnteredDate(int loggedInUserId);
 public:
     OperationManager()

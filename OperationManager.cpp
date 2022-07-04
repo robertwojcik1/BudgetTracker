@@ -3,7 +3,8 @@
 void OperationManager::addIncomeWithCurrentDate(int loggedInUserId)
 {
     Income income;
-    string date = "", incomeCategory = "", incomeAmount = "";
+    string date = "", incomeCategory = "";
+    double incomeAmount = 0.0;
     char select;
     date = Date::getCurrentDate();
     select = selectIncomeCategory();
@@ -38,7 +39,8 @@ void OperationManager::addIncomeWithCurrentDate(int loggedInUserId)
 void OperationManager::addIncomeWithEnteredDate(int loggedInUserId)
 {
     Income income;
-    string date = "", incomeCategory = "", incomeAmount = "";
+    string date = "", incomeCategory = "";
+    double incomeAmount = 0.0;
     char select;
 
     system("cls");
@@ -112,11 +114,11 @@ string OperationManager::enterIncomeCategory()
     return newIncomeCategory;
 }
 
-string OperationManager::enterIncomeAmount()
+double OperationManager::enterIncomeAmount()
 {
-    string incomeAmount = "";
+    double incomeAmount = 0.0;
     cout << "Wprowadz wysokosc przychodu: ";
-    incomeAmount = AuxiliaryMethods::getLine();
+    incomeAmount = AuxiliaryMethods::stringToDoubleConversion(AuxiliaryMethods::getLine());
 
     return incomeAmount;
 }
@@ -182,7 +184,8 @@ char OperationManager::selectOptionFromAddExpenseMenu()
 void OperationManager::addExpenseWithCurrentDate(int loggedInUserId)
 {
     Expense expense;
-    string date = "", expenseCategory = "", expenseAmount = "";
+    string date = "", expenseCategory = "";
+    double expenseAmount = 0.0;
     char select;
     date = Date::getCurrentDate();
     select = selectExpenseCategory();
@@ -250,11 +253,11 @@ string OperationManager::enterExpenseCategory()
     return newExpenseCategory;
 }
 
-string OperationManager::enterExpenseAmount()
+double OperationManager::enterExpenseAmount()
 {
-    string expenseAmount = "";
+    double expenseAmount = 0.0;
     cout << "Wprowadz wysokosc wydatku: ";
-    expenseAmount = AuxiliaryMethods::getLine();
+    expenseAmount = AuxiliaryMethods::stringToDoubleConversion(AuxiliaryMethods::getLine());
 
     return expenseAmount;
 }
@@ -262,7 +265,8 @@ string OperationManager::enterExpenseAmount()
 void OperationManager::addExpenseWithEnteredDate(int loggedInUserId)
 {
     Expense expense;
-    string date = "", expenseCategory = "", expenseAmount = "";
+    string date = "", expenseCategory = "";
+    double expenseAmount = 0.0;
     char select;
 
     system("cls");
@@ -338,6 +342,7 @@ void OperationManager::addExpense(int loggedInUserId)
 
 void OperationManager::printBalanceFromCurrentMonth()
 {
+    double sumOfIncomes = 0.0, sumOfExpenses = 0.0, balance = 0.0;
     cout << "***BILANS Z BIEZACEGO MIESIACA***" << endl << endl;
     cout << "       >>> Przychody <<<" << endl;
     for(int i = 0; i < incomes.size(); i++)
@@ -346,6 +351,7 @@ void OperationManager::printBalanceFromCurrentMonth()
     cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
     cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
     cout << "****************" << endl;
+    sumOfIncomes += incomes[i].getAmount();
     }
     cout << endl << "       >>> Wydatki <<<" << endl;
     for(int j = 0; j < expenses.size(); j++)
@@ -354,12 +360,18 @@ void OperationManager::printBalanceFromCurrentMonth()
     cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
     cout << "Kwota:               " << expenses[j].getAmount() << endl;
     cout << "****************" << endl;
+    sumOfExpenses += expenses[j].getAmount();
     }
+    balance = sumOfIncomes - sumOfExpenses;
+    cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
+    cout << "Suma wydatkow: " << sumOfExpenses << " zl" << endl;
+    cout << "Saldo: " << balance << " zl" << endl;
     system("pause");
 }
 
 void OperationManager::printBalanceFromPreviousMonth()
 {
+    double sumOfIncomes = 0.0, sumOfExpenses = 0.0, balance = 0.0;
     cout << "***BILANS Z POPRZEDNIEGO MIESIACA***" << endl << endl;
     cout << "       >>> Przychody <<<" << endl;
     for(int i = 0; i < incomes.size(); i++)
@@ -368,6 +380,7 @@ void OperationManager::printBalanceFromPreviousMonth()
     cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
     cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
     cout << "****************" << endl;
+    sumOfIncomes += incomes[i].getAmount();
     }
     cout << endl << "       >>> Wydatki <<<" << endl;
     for(int j = 0; j < expenses.size(); j++)
@@ -376,12 +389,18 @@ void OperationManager::printBalanceFromPreviousMonth()
     cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
     cout << "Kwota:               " << expenses[j].getAmount() << endl;
     cout << "****************" << endl;
+    sumOfExpenses += expenses[j].getAmount();
     }
+    balance = sumOfIncomes - sumOfExpenses;
+    cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
+    cout << "Suma wydatkow: " << sumOfExpenses << " zl" << endl;
+    cout << "Saldo: " << balance << " zl" << endl;
     system("pause");
 }
 
 void OperationManager::printBalanceOfSelectedPeriod()
 {
+    double sumOfIncomes = 0.0, sumOfExpenses = 0.0, balance = 0.0;
     cout << "***BILANS Z WYBRANEGO OKRESU***" << endl << endl;
     cout << "       >>> Przychody <<<" << endl;
     for(int i = 0; i < incomes.size(); i++)
@@ -390,6 +409,7 @@ void OperationManager::printBalanceOfSelectedPeriod()
     cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
     cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
     cout << "****************" << endl;
+    sumOfIncomes += incomes[i].getAmount();
     }
     cout << endl << "       >>> Wydatki <<<" << endl;
     for(int j = 0; j < expenses.size(); j++)
@@ -398,6 +418,11 @@ void OperationManager::printBalanceOfSelectedPeriod()
     cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
     cout << "Kwota:               " << expenses[j].getAmount() << endl;
     cout << "****************" << endl;
+    sumOfExpenses += expenses[j].getAmount();
     }
+    balance = sumOfIncomes - sumOfExpenses;
+    cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
+    cout << "Suma wydatkow: " << sumOfExpenses << " zl" << endl;
+    cout << "Saldo: " << balance << " zl" << endl;
     system("pause");
 }

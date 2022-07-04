@@ -11,6 +11,7 @@ class AuxiliaryMethods
 public:
      static string intToStringConversion(int number);
      static int stringToIntConversion(string number);
+     static double stringToDoubleConversion(string number);
      static string getLine();
      static char getChar();
      static int getInteger();

@@ -1,10 +1,12 @@
 #include "FileWithIncomes.h"
 
-void FileWithIncomes::addIncomeToFile(int loggedInUserId, string date, string incomeCategory, string incomeAmount)
+void FileWithIncomes::addIncomeToFile(int loggedInUserId, string date, string incomeCategory, double incomeAmount)
 {
+    string amountString = doubleToStringConversion(incomeAmount);
     incomeId++;
+    incomesXml.Load("incomes.xml");
     incomesXml.ResetPos();
-    incomesXml.FindElem();
+    incomesXml.FindElem("Incomes");
     incomesXml.IntoElem();
     incomesXml.AddElem("Income");
     incomesXml.IntoElem();
@@ -12,8 +14,9 @@ void FileWithIncomes::addIncomeToFile(int loggedInUserId, string date, string in
     incomesXml.AddElem("userId", loggedInUserId);
     incomesXml.AddElem("date", date);
     incomesXml.AddElem("item", incomeCategory);
-    incomesXml.AddElem("amount", incomeAmount);
-    incomesXml.ResetPos();
+    incomesXml.AddElem("amount", amountString);
+    incomesXml.OutOfElem();
+    //incomesXml.ResetPos();
     incomesXml.Save("incomes.xml");
     cout << "Pomyslnie dodano przychod." << endl;
     system("pause");
@@ -53,7 +56,7 @@ vector<Income> FileWithIncomes::loadIncomesFromFile()
         incomesXml.FindElem( "item" );
         income.setItem(incomesXml.GetData());
         incomesXml.FindElem( "amount" );
-        income.setAmount(incomesXml.GetData());
+        income.setAmount(stod(incomesXml.GetData()));
         incomesXml.OutOfElem();
         incomes.push_back(income);
     }
@@ -63,4 +66,12 @@ vector<Income> FileWithIncomes::loadIncomesFromFile()
 int FileWithIncomes::getIncomeId()
 {
     return incomeId;
+}
+
+string FileWithIncomes::doubleToStringConversion(double number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
 }

@@ -10,6 +10,8 @@ class FileWithIncomes
 {
     CMarkup incomesXml;
     int incomeId;
+
+    string doubleToStringConversion(double number);
 public:
     FileWithIncomes()
     {
@@ -24,7 +26,7 @@ public:
         else
           incomeId = getLastIncomeId();
     }
-    void addIncomeToFile( int loggedInUserId, string date, string incomeCategory, string incomeAmount);
+    void addIncomeToFile( int loggedInUserId, string date, string incomeCategory, double incomeAmount);
     int getLastIncomeId();
     int getIncomeId();
     vector<Income> loadIncomesFromFile();

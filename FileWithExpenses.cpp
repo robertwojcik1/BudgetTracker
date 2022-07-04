@@ -1,8 +1,10 @@
 #include "FileWithExpenses.h"
 
-void FileWithExpenses::addExpenseToFile( int loggedInUserId, string date, string expenseCategory, string expenseAmount)
+void FileWithExpenses::addExpenseToFile( int loggedInUserId, string date, string expenseCategory, double expenseAmount)
 {
+    string amountString = doubleToStringConversion(expenseAmount);
     expenseId++;
+    expensesXml.Load("expenses.xml");
     expensesXml.ResetPos();
     expensesXml.FindElem();
     expensesXml.IntoElem();
@@ -12,8 +14,8 @@ void FileWithExpenses::addExpenseToFile( int loggedInUserId, string date, string
     expensesXml.AddElem("userId", loggedInUserId);
     expensesXml.AddElem("date", date);
     expensesXml.AddElem("item", expenseCategory);
-    expensesXml.AddElem("amount", expenseAmount);
-    expensesXml.ResetPos();
+    expensesXml.AddElem("amount", amountString);
+    //expensesXml.ResetPos();
     expensesXml.Save("expenses.xml");
     cout << "Pomyslnie dodano wydatek." << endl;
     system("pause");
@@ -58,9 +60,17 @@ vector <Expense> FileWithExpenses::loadExpensesFromFile()
         expensesXml.FindElem( "item" );
         expense.setItem(expensesXml.GetData());
         expensesXml.FindElem( "amount" );
-        expense.setAmount(expensesXml.GetData());
+        expense.setAmount(stod(expensesXml.GetData()));
         expensesXml.OutOfElem();
         expenses.push_back(expense);
     }
     return expenses;
+}
+
+string FileWithExpenses::doubleToStringConversion(double number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
 }

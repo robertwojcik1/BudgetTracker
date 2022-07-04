@@ -44,6 +44,18 @@ int AuxiliaryMethods::stringToIntConversion(string number)
     return numberInt;
 }
 
+double AuxiliaryMethods::stringToDoubleConversion(string number)
+{
+    double numberDouble = 0.0;
+    for(int i = 0; i < number.length(); i++)
+    {
+        if(number[i] == ',')
+            number[i] = '.';
+    }
+    numberDouble = stod(number);
+    return numberDouble;
+}
+
 int AuxiliaryMethods::getInteger()
 {
     string input = "";

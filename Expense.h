@@ -12,7 +12,7 @@ class Expense : public BudgetOperation
 {
     int lastIncomeId;
 public:
-    Expense(int id = 0, int userId = 0, string date = "", string item = "", string amount = "")
+    Expense(int id = 0, int userId = 0, string date = "", string item = "", double amount = 0.0)
     {
 
     }

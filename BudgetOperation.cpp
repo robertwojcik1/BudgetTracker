@@ -20,7 +20,7 @@ string BudgetOperation::getItem()
     return item;
 }
 
-string BudgetOperation::getAmount()
+double BudgetOperation::getAmount()
 {
     return amount;
 }
@@ -47,7 +47,7 @@ void BudgetOperation::setItem(string item)
     this->item = item;
 }
 
-void BudgetOperation::setAmount(string amount)
+void BudgetOperation::setAmount(double amount)
 {
     this->amount = amount;
 }
