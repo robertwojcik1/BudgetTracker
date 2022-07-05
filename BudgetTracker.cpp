@@ -43,6 +43,8 @@ bool BudgetTracker::isUserLoggedIn()
 void BudgetTracker::userLogin()
 {
     userManager.userLogin();
+    if(userManager.isUserLoggedIn())
+    operationManager = new OperationManager();  //userManager.getLoggedInUserId()
 }
 
 char BudgetTracker::selectOptionFromUserMenu()
@@ -70,6 +72,8 @@ char BudgetTracker::selectOptionFromUserMenu()
 void BudgetTracker::logOut()
 {
     userManager.logOut();
+    delete operationManager;
+    operationManager = NULL;
 }
 
 void BudgetTracker::changePassword()
@@ -79,25 +83,25 @@ void BudgetTracker::changePassword()
 
 void BudgetTracker::addIncome()
 {
-    userManager.addIncome();
+    operationManager->addIncome(userManager.getLoggedInUserId());
 }
 
 void BudgetTracker::addExpense()
 {
-    userManager.addExpense();
+    operationManager->addExpense(userManager.getLoggedInUserId());
 }
 
 void BudgetTracker::printBalanceFromCurrentMonth()
 {
-    userManager.printBalanceFromCurrentMonth();
+    operationManager->printBalanceFromCurrentMonth();
 }
 
 void BudgetTracker::printBalanceFromPreviousMonth()
 {
-    userManager.printBalanceFromPreviousMonth();
+    operationManager->printBalanceFromPreviousMonth();
 }
 
 void BudgetTracker::printBalanceOfSelectedPeriod()
 {
-    userManager.printBalanceOfSelectedPeriod();
+    operationManager->printBalanceOfSelectedPeriod();
 }

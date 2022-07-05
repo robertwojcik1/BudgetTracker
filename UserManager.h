@@ -7,17 +7,12 @@
 #include "User.h"
 #include "FileWithUsers.h"
 #include "AuxiliaryMethods.h"
-//#include "Income.h"
-//#include "Expense.h"
 #include "OperationManager.h"
 
 using namespace std;
 
 class UserManager
 {
-    OperationManager operationManager;
-    //Income income;
-   // Expense expense;
     FileWithUsers fileWithUsers;
     int loggedInUserId;
     vector<User> users;
@@ -36,11 +31,12 @@ public:
     void userLogin();
     void logOut();
     void changePassword();
-    void addIncome();
-    void addExpense();
-    void printBalanceFromCurrentMonth();
-    void printBalanceFromPreviousMonth();
-    void printBalanceOfSelectedPeriod();
+    //void addIncome();
+    //void addExpense();
+    //void printBalanceFromCurrentMonth();
+    //void printBalanceFromPreviousMonth();
+    //void printBalanceOfSelectedPeriod();
+    int getLoggedInUserId();
 };
 
 #endif

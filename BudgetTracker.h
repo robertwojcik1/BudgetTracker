@@ -10,8 +10,18 @@ using namespace std;
 class BudgetTracker
 {
     UserManager userManager;
+    OperationManager *operationManager;
 
 public:
+    BudgetTracker()
+    {
+    operationManager = NULL;
+    };
+    ~BudgetTracker()
+    {
+        delete operationManager;
+        operationManager = NULL;
+    };
     bool isUserLoggedIn();
     char selectOptionFromMainMenu();
     void userRegister();
