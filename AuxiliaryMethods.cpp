@@ -72,3 +72,35 @@ int AuxiliaryMethods::getInteger()
     }
     return number;
 }
+
+string AuxiliaryMethods::doubleToStringConversion(double number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
+int AuxiliaryMethods::dateConversionToInt(string date)
+{
+    int dateInt = 0;
+    string dateWithoutDashes = "";
+    for(int i = 0; i < date.length(); i++)
+    {
+        if(date[i] == '-')
+            continue;
+        dateWithoutDashes += date[i];
+    }
+    dateInt = AuxiliaryMethods::stringToIntConversion(dateWithoutDashes);
+    return dateInt;
+}
+
+string AuxiliaryMethods::dateConversionToString(int date)
+{
+    string dateString = "";
+    dateString = intToStringConversion(date);
+    dateString.insert(4, "-");
+    dateString.insert(7, "-");
+
+    return dateString;
+}

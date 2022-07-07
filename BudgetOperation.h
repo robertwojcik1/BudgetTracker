@@ -8,18 +8,18 @@ class BudgetOperation
 {
     int id;
     int userId;
-    string date;
+    int date;
     string item;
     double amount;
 public:
     int getId();
     int getUserId();
-    string getDate();
+    int getDate();
     string getItem();
     double getAmount();
     void setId(int id);
     void setUserId(int userId);
-    void setDate(string date);
+    void setDate(int date);
     void setItem(string item);
     void setAmount(double amount);
 };

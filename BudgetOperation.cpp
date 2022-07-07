@@ -10,7 +10,7 @@ int BudgetOperation::getUserId()
     return userId;
 }
 
-string BudgetOperation::getDate()
+int BudgetOperation::getDate()
 {
     return date;
 }
@@ -37,7 +37,7 @@ void BudgetOperation::setUserId(int userId)
         this->userId = userId;
 }
 
-void BudgetOperation::setDate(string date)
+void BudgetOperation::setDate(int date)
 {
     this->date = date;
 }

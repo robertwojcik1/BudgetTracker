@@ -129,31 +129,6 @@ void UserManager::changePassword()
     fileWithUsers.changePasswordInFile(newPassword, loggedInUserId);
 }
 
-/*void UserManager::addIncome()
-{
-    operationManager->addIncome(loggedInUserId);
-}
-
-void UserManager::addExpense()
-{
-    operationManager->addExpense(loggedInUserId);
-}
-
-void UserManager::printBalanceFromCurrentMonth()
-{
-    operationManager->printBalanceFromCurrentMonth();
-}
-
-void UserManager::printBalanceFromPreviousMonth()
-{
-    operationManager->printBalanceFromPreviousMonth();
-}
-
-void UserManager::printBalanceOfSelectedPeriod()
-{
-    operationManager->printBalanceOfSelectedPeriod();
-} */
-
 int UserManager::getLoggedInUserId()
 {
    return loggedInUserId;

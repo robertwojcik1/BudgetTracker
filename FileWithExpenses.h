@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Markup.h"
 #include "Expense.h"
+#include "AuxiliaryMethods.h"
 
 using namespace std;
 
@@ -10,8 +11,6 @@ class FileWithExpenses
 {
     CMarkup expensesXml;
     int expenseId;
-
-    string doubleToStringConversion(double number);
 public:
     FileWithExpenses()
     {

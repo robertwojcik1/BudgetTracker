@@ -18,6 +18,7 @@ class OperationManager
     FileWithExpenses fileWithExpenses;
     vector<Income> incomes;
     vector<Expense> expenses;
+    //const int LOGGED_IN_USER_ID;
 
     void addIncomeWithCurrentDate(int loggedInUserId);
     void addIncomeWithEnteredDate(int loggedInUserId);

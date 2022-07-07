@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Markup.h"
 #include "Income.h"
+#include "AuxiliaryMethods.h"
 
 using namespace std;
 
@@ -11,7 +12,6 @@ class FileWithIncomes
     CMarkup incomesXml;
     int incomeId;
 
-    string doubleToStringConversion(double number);
 public:
     FileWithIncomes()
     {

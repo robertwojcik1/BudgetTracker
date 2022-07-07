@@ -28,7 +28,7 @@ void OperationManager::addIncomeWithCurrentDate(int loggedInUserId)
     incomeAmount = enterIncomeAmount();
     income.setId(fileWithIncomes.getIncomeId() + 1);
     income.setUserId(loggedInUserId);
-    income.setDate(date);
+    income.setDate(AuxiliaryMethods::dateConversionToInt(date));
     income.setItem(incomeCategory);
     income.setAmount(incomeAmount);
     incomes.push_back(income);
@@ -71,7 +71,7 @@ void OperationManager::addIncomeWithEnteredDate(int loggedInUserId)
         incomeAmount = enterIncomeAmount();
         income.setId(fileWithIncomes.getIncomeId() + 1);
         income.setUserId(loggedInUserId);
-        income.setDate(date);
+        income.setDate(AuxiliaryMethods::dateConversionToInt(date));
         income.setItem(incomeCategory);
         income.setAmount(incomeAmount);
         incomes.push_back(income);
@@ -215,7 +215,7 @@ void OperationManager::addExpenseWithCurrentDate(int loggedInUserId)
     expenseAmount = enterExpenseAmount();
     expense.setId(fileWithExpenses.getLastExpenseId());
     expense.setUserId(loggedInUserId);
-    expense.setDate(date);
+    expense.setDate(AuxiliaryMethods::dateConversionToInt(date));
     expense.setItem(expenseCategory);
     expense.setAmount(expenseAmount);
     expenses.push_back(expense);
@@ -303,7 +303,7 @@ void OperationManager::addExpenseWithEnteredDate(int loggedInUserId)
         expenseAmount = enterExpenseAmount();
         expense.setId(fileWithExpenses.getLastExpenseId());
         expense.setUserId(loggedInUserId);
-        expense.setDate(date);
+        expense.setDate(AuxiliaryMethods::dateConversionToInt(date));
         expense.setItem(expenseCategory);
         expense.setAmount(expenseAmount);
         expenses.push_back(expense);
@@ -347,7 +347,7 @@ void OperationManager::printBalanceFromCurrentMonth()
     cout << "       >>> Przychody <<<" << endl;
     for(int i = 0; i < incomes.size(); i++)
     {
-    cout << "Data:                " << incomes[i].getDate() << endl;
+    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
     cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
     cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
     cout << "****************" << endl;
@@ -356,7 +356,7 @@ void OperationManager::printBalanceFromCurrentMonth()
     cout << endl << "       >>> Wydatki <<<" << endl;
     for(int j = 0; j < expenses.size(); j++)
     {
-    cout << "Data:                " << expenses[j].getDate() << endl;
+    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
     cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
     cout << "Kwota:               " << expenses[j].getAmount() << endl;
     cout << "****************" << endl;
