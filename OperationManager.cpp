@@ -362,7 +362,7 @@ void OperationManager::printBalanceFromCurrentMonth()
     {
     cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
     cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
-    cout << "Kwota:               " << expenses[j].getAmount() << endl;
+    cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
     cout << "****************" << endl;
     sumOfExpenses += expenses[j].getAmount();
     }
@@ -395,7 +395,7 @@ void OperationManager::printBalanceFromPreviousMonth()
     {
     cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
     cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
-    cout << "Kwota:               " << expenses[j].getAmount() << endl;
+    cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
     cout << "****************" << endl;
     sumOfExpenses += expenses[j].getAmount();
     }
@@ -428,7 +428,7 @@ void OperationManager::printBalanceOfSelectedPeriod()
     {
     cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
     cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
-    cout << "Kwota:               " << expenses[j].getAmount() << endl;
+    cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
     cout << "****************" << endl;
     sumOfExpenses += expenses[j].getAmount();
     }

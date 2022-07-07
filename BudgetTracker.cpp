@@ -44,7 +44,7 @@ void BudgetTracker::userLogin()
 {
     userManager.userLogin();
     if(userManager.isUserLoggedIn())
-    operationManager = new OperationManager();  //userManager.getLoggedInUserId()
+    operationManager = new OperationManager(FILE_WITH_INCOMES_NAME, FILE_WITH_EXPENSES_NAME,  userManager.getLoggedInUserId());
 }
 
 char BudgetTracker::selectOptionFromUserMenu()

@@ -19,7 +19,7 @@ class OperationManager
     FileWithExpenses fileWithExpenses;
     vector<Income> incomes;
     vector<Expense> expenses;
-    //const int LOGGED_IN_USER_ID;
+    const int LOGGED_IN_USER_ID;
 
     void addIncomeWithCurrentDate(int loggedInUserId);
     void addIncomeWithEnteredDate(int loggedInUserId);
@@ -33,10 +33,10 @@ class OperationManager
     double enterExpenseAmount();
     void addExpenseWithEnteredDate(int loggedInUserId);
 public:
-    OperationManager()
+    OperationManager(string fileWithIncomesName, string fileWithExpensesName, int loggedInUserId) : fileWithIncomes(fileWithIncomesName), fileWithExpenses(fileWithExpensesName), LOGGED_IN_USER_ID(loggedInUserId)
     {
-        incomes = fileWithIncomes.loadIncomesFromFile();
-        expenses = fileWithExpenses.loadExpensesFromFile();
+        incomes = fileWithIncomes.loadIncomesFromFile(incomes, LOGGED_IN_USER_ID);
+        expenses = fileWithExpenses.loadExpensesFromFile(expenses, LOGGED_IN_USER_ID);
     }
 
     void addIncome(int loggedInUserId);

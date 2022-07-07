@@ -21,7 +21,7 @@ class UserManager
     int getNewUserId();
     bool isLoginExists(string login);
 public:
-    UserManager()
+    UserManager(string fileWithUsersName) : fileWithUsers(fileWithUsersName)
     {
         users = fileWithUsers.loadUsersFromFile();
         loggedInUserId = 0;
@@ -31,11 +31,6 @@ public:
     void userLogin();
     void logOut();
     void changePassword();
-    //void addIncome();
-    //void addExpense();
-    //void printBalanceFromCurrentMonth();
-    //void printBalanceFromPreviousMonth();
-    //void printBalanceOfSelectedPeriod();
     int getLoggedInUserId();
 };
 

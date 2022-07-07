@@ -12,8 +12,9 @@ using namespace std;
 class FileWithUsers
 {
     CMarkup xml;
+    const string FILE_WITH_USERS_NAME;
 public:
-    FileWithUsers()
+    FileWithUsers(string fileWithUsersName) : FILE_WITH_USERS_NAME(fileWithUsersName)
     {
         bool fileExists = xml.Load( "users.xml" );
 

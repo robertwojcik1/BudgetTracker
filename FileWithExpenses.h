@@ -10,9 +10,10 @@ using namespace std;
 class FileWithExpenses
 {
     CMarkup expensesXml;
+    const string FILE_WITH_EXPENSES_NAME;
     int expenseId;
 public:
-    FileWithExpenses()
+    FileWithExpenses(string fileWithExpensesName) : FILE_WITH_EXPENSES_NAME(fileWithExpensesName)
     {
     bool fileExists = expensesXml.Load( "expenses.xml" );
 
@@ -28,7 +29,7 @@ public:
     void addExpenseToFile( int loggedInUserId, string date, string expenseCategory, double expenseAmount);
     int getLastExpenseId();
     int getExpenseId();
-    vector <Expense> loadExpensesFromFile();
+    vector <Expense> loadExpensesFromFile(vector <Expense> expenses, int LOGGED_IN_USER_ID);
 };
 
 #endif

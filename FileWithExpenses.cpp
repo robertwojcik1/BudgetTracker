@@ -39,10 +39,9 @@ int FileWithExpenses::getExpenseId()
     return expenseId;
 }
 
-vector <Expense> FileWithExpenses::loadExpensesFromFile()
+vector <Expense> FileWithExpenses::loadExpensesFromFile(vector <Expense> expenses, int LOGGED_IN_USER_ID)
 {
     Expense expense;
-    vector <Expense> expenses;
 
     expensesXml.Load("expenses.xml");
     expensesXml.FindElem();
@@ -53,6 +52,11 @@ vector <Expense> FileWithExpenses::loadExpensesFromFile()
         expensesXml.FindElem( "expenseId" );
         expense.setId(atoi( MCD_2PCSZ(expensesXml.GetData()) ));
         expensesXml.FindElem( "userId" );
+        if(LOGGED_IN_USER_ID != atoi(MCD_2PCSZ(expensesXml.GetData()) ))
+        {
+            expensesXml.OutOfElem();
+            continue;
+        }
         expense.setUserId(atoi(MCD_2PCSZ(expensesXml.GetData()) ));
         expensesXml.FindElem( "date" );
         expense.setDate(AuxiliaryMethods::dateConversionToInt(expensesXml.GetData() ));

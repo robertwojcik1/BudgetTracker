@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    BudgetTracker budgetTracker;
+    BudgetTracker budgetTracker("users.xml", "incomes.xml", "expenses.xml");
     char select;
 
     while(true)

@@ -11,9 +11,11 @@ class BudgetTracker
 {
     UserManager userManager;
     OperationManager *operationManager;
+    const string FILE_WITH_INCOMES_NAME;
+    const string FILE_WITH_EXPENSES_NAME;
 
 public:
-    BudgetTracker()
+    BudgetTracker(string fileWithUsersName, string fileWithIncomesName, string fileWithExpensesName) : userManager(fileWithUsersName), FILE_WITH_INCOMES_NAME(fileWithIncomesName), FILE_WITH_EXPENSES_NAME(fileWithExpensesName)
     {
     operationManager = NULL;
     };

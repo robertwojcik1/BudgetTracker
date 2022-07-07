@@ -10,10 +10,11 @@ using namespace std;
 class FileWithIncomes
 {
     CMarkup incomesXml;
+    const string FILE_WITH_INCOMES_NAME;
     int incomeId;
 
 public:
-    FileWithIncomes()
+    FileWithIncomes(string fileWithIncomesName) : FILE_WITH_INCOMES_NAME(fileWithIncomesName)
     {
     bool fileExists = incomesXml.Load( "incomes.xml" );
 
@@ -29,7 +30,7 @@ public:
     void addIncomeToFile( int loggedInUserId, string date, string incomeCategory, double incomeAmount);
     int getLastIncomeId();
     int getIncomeId();
-    vector<Income> loadIncomesFromFile();
+    vector<Income> loadIncomesFromFile(vector<Income> incomes, int LOGGED_IN_USER_ID);
 };
 
 #endif

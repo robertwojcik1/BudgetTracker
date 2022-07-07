@@ -35,10 +35,9 @@ int FileWithIncomes::getLastIncomeId()
     return incomeId;
 }
 
-vector<Income> FileWithIncomes::loadIncomesFromFile()
+vector<Income> FileWithIncomes::loadIncomesFromFile(vector<Income> incomes, int LOGGED_IN_USER_ID)
 {
     Income income;
-    vector <Income> incomes;
 
     incomesXml.Load("incomes.xml");
     incomesXml.FindElem();
@@ -49,6 +48,11 @@ vector<Income> FileWithIncomes::loadIncomesFromFile()
         incomesXml.FindElem( "incomeId" );
         income.setId(atoi( MCD_2PCSZ(incomesXml.GetData()) ));
         incomesXml.FindElem( "userId" );
+        if(LOGGED_IN_USER_ID != atoi(MCD_2PCSZ(incomesXml.GetData()) ))
+        {
+            incomesXml.OutOfElem();
+            continue;
+        }
         income.setUserId(atoi(MCD_2PCSZ(incomesXml.GetData()) ));
         incomesXml.FindElem( "date" );
         income.setDate(AuxiliaryMethods::dateConversionToInt(incomesXml.GetData() ));
