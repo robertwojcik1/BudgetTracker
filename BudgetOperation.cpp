@@ -51,3 +51,8 @@ void BudgetOperation::setAmount(double amount)
 {
     this->amount = amount;
 }
+
+bool BudgetOperation::operator <( BudgetOperation& rhs)
+{
+    return this->getDate() < rhs.getDate();
+}

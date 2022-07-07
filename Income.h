@@ -18,9 +18,7 @@ public:
     {
 
     }
-
-
-
+    //bool operator <( Income& rhs);
 };
 
 #endif

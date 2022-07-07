@@ -22,6 +22,7 @@ public:
     void setDate(int date);
     void setItem(string item);
     void setAmount(double amount);
+    bool operator <( BudgetOperation& rhs);
 };
 
 #endif

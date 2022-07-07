@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include "FileWithIncomes.h"
 #include "FileWithExpenses.h"
 #include "Income.h"
