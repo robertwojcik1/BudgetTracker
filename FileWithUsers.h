@@ -16,7 +16,7 @@ class FileWithUsers
 public:
     FileWithUsers(string fileWithUsersName) : FILE_WITH_USERS_NAME(fileWithUsersName)
     {
-        bool fileExists = xml.Load( "users.xml" );
+        bool fileExists = xml.Load( FILE_WITH_USERS_NAME );
 
         if (!fileExists)
         {

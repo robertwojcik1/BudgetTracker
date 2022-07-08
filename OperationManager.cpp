@@ -1,6 +1,6 @@
 #include "OperationManager.h"
 
-void OperationManager::addIncomeWithCurrentDate(int loggedInUserId)
+void OperationManager::addIncomeWithCurrentDate(int LOGGED_IN_USER_ID)
 {
     Income income;
     string date = "", incomeCategory = "";
@@ -25,18 +25,19 @@ void OperationManager::addIncomeWithCurrentDate(int loggedInUserId)
         cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
         system("pause");
     }
+
     incomeAmount = enterIncomeAmount();
-    income.setId(fileWithIncomes.getIncomeId() + 1);
-    income.setUserId(loggedInUserId);
+    income.setId(fileWithIncomes.getLastIncomeId() + 1);
+    income.setUserId(LOGGED_IN_USER_ID);
     income.setDate(AuxiliaryMethods::dateConversionToInt(date));
     income.setItem(incomeCategory);
     income.setAmount(incomeAmount);
     incomes.push_back(income);
 
-    fileWithIncomes.addIncomeToFile(loggedInUserId, date, incomeCategory, incomeAmount);
+    fileWithIncomes.addIncomeToFile(income);
 }
 
-void OperationManager::addIncomeWithEnteredDate(int loggedInUserId)
+void OperationManager::addIncomeWithEnteredDate(int LOGGED_IN_USER_ID)
 {
     Income income;
     string date = "", incomeCategory = "";
@@ -69,14 +70,14 @@ void OperationManager::addIncomeWithEnteredDate(int loggedInUserId)
             system("pause");
         }
         incomeAmount = enterIncomeAmount();
-        income.setId(fileWithIncomes.getIncomeId() + 1);
-        income.setUserId(loggedInUserId);
+        income.setId(fileWithIncomes.getLastIncomeId() + 1);
+        income.setUserId(LOGGED_IN_USER_ID);
         income.setDate(AuxiliaryMethods::dateConversionToInt(date));
         income.setItem(incomeCategory);
         income.setAmount(incomeAmount);
         incomes.push_back(income);
 
-        fileWithIncomes.addIncomeToFile(loggedInUserId, date, incomeCategory, incomeAmount);
+        fileWithIncomes.addIncomeToFile(income);
     }
     else
     {
@@ -123,7 +124,7 @@ double OperationManager::enterIncomeAmount()
     return incomeAmount;
 }
 
-void OperationManager::addIncome(int loggedInUserId)
+void OperationManager::addIncome(int LOGGED_IN_USER_ID)
 {
     char select;
 
@@ -132,10 +133,10 @@ void OperationManager::addIncome(int loggedInUserId)
     switch(select)
     {
     case '1':
-        OperationManager::addIncomeWithCurrentDate(loggedInUserId);
+        OperationManager::addIncomeWithCurrentDate(LOGGED_IN_USER_ID);
         break;
     case '2':
-        OperationManager::addIncomeWithEnteredDate(loggedInUserId);
+        OperationManager::addIncomeWithEnteredDate(LOGGED_IN_USER_ID);
         break;
     case '9':
         return;
@@ -181,7 +182,7 @@ char OperationManager::selectOptionFromAddExpenseMenu()
     return select;
 }
 
-void OperationManager::addExpenseWithCurrentDate(int loggedInUserId)
+void OperationManager::addExpenseWithCurrentDate(int LOGGED_IN_USER_ID)
 {
     Expense expense;
     string date = "", expenseCategory = "";
@@ -213,14 +214,14 @@ void OperationManager::addExpenseWithCurrentDate(int loggedInUserId)
         system("pause");
     }
     expenseAmount = enterExpenseAmount();
-    expense.setId(fileWithExpenses.getLastExpenseId());
-    expense.setUserId(loggedInUserId);
+    expense.setId(fileWithExpenses.getLastExpenseId() + 1);
+    expense.setUserId(LOGGED_IN_USER_ID);
     expense.setDate(AuxiliaryMethods::dateConversionToInt(date));
     expense.setItem(expenseCategory);
     expense.setAmount(expenseAmount);
     expenses.push_back(expense);
 
-    fileWithExpenses.addExpenseToFile(loggedInUserId, date, expenseCategory, expenseAmount);
+    fileWithExpenses.addExpenseToFile(expense);
 }
 
 char OperationManager::selectExpenseCategory()
@@ -262,7 +263,7 @@ double OperationManager::enterExpenseAmount()
     return expenseAmount;
 }
 
-void OperationManager::addExpenseWithEnteredDate(int loggedInUserId)
+void OperationManager::addExpenseWithEnteredDate(int LOGGED_IN_USER_ID)
 {
     Expense expense;
     string date = "", expenseCategory = "";
@@ -301,14 +302,14 @@ void OperationManager::addExpenseWithEnteredDate(int loggedInUserId)
             system("pause");
         }
         expenseAmount = enterExpenseAmount();
-        expense.setId(fileWithExpenses.getLastExpenseId());
-        expense.setUserId(loggedInUserId);
+        expense.setId(fileWithExpenses.getLastExpenseId() + 1);
+        expense.setUserId(LOGGED_IN_USER_ID);
         expense.setDate(AuxiliaryMethods::dateConversionToInt(date));
         expense.setItem(expenseCategory);
         expense.setAmount(expenseAmount);
         expenses.push_back(expense);
 
-        fileWithExpenses.addExpenseToFile(loggedInUserId, date, expenseCategory, expenseAmount);
+        fileWithExpenses.addExpenseToFile(expense);
     }
     else
     {
@@ -318,7 +319,7 @@ void OperationManager::addExpenseWithEnteredDate(int loggedInUserId)
     }
 }
 
-void OperationManager::addExpense(int loggedInUserId)
+void OperationManager::addExpense(int LOGGED_IN_USER_ID)
 {
     char select;
 
@@ -327,10 +328,10 @@ void OperationManager::addExpense(int loggedInUserId)
     switch(select)
     {
     case '1':
-        OperationManager::addExpenseWithCurrentDate(loggedInUserId);
+        OperationManager::addExpenseWithCurrentDate(LOGGED_IN_USER_ID);
         break;
     case '2':
-        OperationManager::addExpenseWithEnteredDate(loggedInUserId);
+        OperationManager::addExpenseWithEnteredDate(LOGGED_IN_USER_ID);
         break;
     case '9':
         return;

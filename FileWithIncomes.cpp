@@ -1,28 +1,30 @@
 #include "FileWithIncomes.h"
 
-void FileWithIncomes::addIncomeToFile(int loggedInUserId, string date, string incomeCategory, double incomeAmount)
+void FileWithIncomes::addIncomeToFile(Income income)
 {
-    string amountString = AuxiliaryMethods::doubleToStringConversion(incomeAmount);
-    incomeId++;
-    incomesXml.Load("incomes.xml");
+    string amountString = AuxiliaryMethods::doubleToStringConversion(income.getAmount());
+    string date = AuxiliaryMethods::dateConversionToString(income.getDate());
+    incomesXml.Load(FILE_WITH_INCOMES_NAME);
     incomesXml.ResetPos();
-    incomesXml.FindElem("Incomes");
+    incomesXml.FindElem();
     incomesXml.IntoElem();
     incomesXml.AddElem("Income");
     incomesXml.IntoElem();
-    incomesXml.AddElem("incomeId", incomeId);
-    incomesXml.AddElem("userId", loggedInUserId);
+    incomesXml.AddElem("incomeId", income.getId());
+    incomesXml.AddElem("userId", income.getUserId());
     incomesXml.AddElem("date", date);
-    incomesXml.AddElem("item", incomeCategory);
+    incomesXml.AddElem("item", income.getItem());
     incomesXml.AddElem("amount", amountString);
     incomesXml.OutOfElem();
-    incomesXml.Save("incomes.xml");
+    incomesXml.Save(FILE_WITH_INCOMES_NAME);
     cout << "Pomyslnie dodano przychod." << endl;
     system("pause");
 }
 
 int FileWithIncomes::getLastIncomeId()
 {
+    int incomeId = 0;
+    incomesXml.Load(FILE_WITH_INCOMES_NAME);
     incomesXml.FindElem();
     incomesXml.IntoElem();
     while ( incomesXml.FindElem("Income") )
@@ -39,7 +41,7 @@ vector<Income> FileWithIncomes::loadIncomesFromFile(vector<Income> incomes, int 
 {
     Income income;
 
-    incomesXml.Load("incomes.xml");
+    incomesXml.Load(FILE_WITH_INCOMES_NAME);
     incomesXml.FindElem();
     incomesXml.IntoElem();
     while (incomesXml.FindElem("Income"))
@@ -64,9 +66,4 @@ vector<Income> FileWithIncomes::loadIncomesFromFile(vector<Income> incomes, int 
         incomes.push_back(income);
     }
     return incomes;
-}
-
-int FileWithIncomes::getIncomeId()
-{
-    return incomeId;
 }

@@ -13,7 +13,7 @@ void FileWithUsers::addUserToFile(User user)
     xml.AddElem("Name", user.getName());
     xml.AddElem("Surname", user.getSurname());
     xml.ResetPos();
-    xml.Save("users.xml");
+    xml.Save(FILE_WITH_USERS_NAME);
 }
 
 vector<User> FileWithUsers::loadUsersFromFile()
@@ -59,5 +59,5 @@ void FileWithUsers::changePasswordInFile(string newPassword, int loggedInUserId)
         }
         xml.OutOfElem();
     }
-    xml.Save("users.xml");
+    xml.Save(FILE_WITH_USERS_NAME);
 }
