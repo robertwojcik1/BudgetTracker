@@ -20,26 +20,35 @@ vector<User> FileWithUsers::loadUsersFromFile()
 {
     User user;
     vector <User> users;
-
-    xml.FindElem();
-    xml.IntoElem();
-    while (xml.FindElem("User"))
+    bool fileExists = xml.Load(FILE_WITH_USERS_NAME);
+    if(fileExists)
     {
+        xml.FindElem();
         xml.IntoElem();
-        xml.FindElem( "UserId" );
-        user.setUserId(atoi( MCD_2PCSZ(xml.GetData()) ));
-        xml.FindElem( "Login" );
-        user.setLogin(xml.GetData());
-        xml.FindElem( "Password" );
-        user.setPassword(xml.GetData());
-        xml.FindElem( "Name" );
-        user.setName(xml.GetData());
-        xml.FindElem( "Surname" );
-        user.setSurname(xml.GetData());
-        xml.OutOfElem();
-        users.push_back(user);
+        while (xml.FindElem("User"))
+        {
+            xml.IntoElem();
+            xml.FindElem( "UserId" );
+            user.setUserId(atoi( MCD_2PCSZ(xml.GetData()) ));
+            xml.FindElem( "Login" );
+            user.setLogin(xml.GetData());
+            xml.FindElem( "Password" );
+            user.setPassword(xml.GetData());
+            xml.FindElem( "Name" );
+            user.setName(xml.GetData());
+            xml.FindElem( "Surname" );
+            user.setSurname(xml.GetData());
+            xml.OutOfElem();
+            users.push_back(user);
+        }
+        return users;
     }
-    return users;
+    else
+    {
+        cout << "Nie odnaleziono pliku z uzytkownikami!" << endl;
+        system("pause");
+        return users;
+    }
 }
 
 void FileWithUsers::changePasswordInFile(string newPassword, int loggedInUserId)

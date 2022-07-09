@@ -33,7 +33,8 @@ User UserManager::enterNewUserData()
         cout << "Podaj login: ";
         cin >> login;
         user.setLogin(login);
-    } while (isLoginExists(user.getLogin()));
+    }
+    while (isLoginExists(user.getLogin()));
 
     cout << "Podaj haslo: ";
     cin >> password;
@@ -131,5 +132,5 @@ void UserManager::changePassword()
 
 int UserManager::getLoggedInUserId()
 {
-   return loggedInUserId;
+    return loggedInUserId;
 }

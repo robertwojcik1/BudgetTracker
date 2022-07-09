@@ -344,28 +344,39 @@ void OperationManager::addExpense(int LOGGED_IN_USER_ID)
 void OperationManager::printBalanceFromCurrentMonth()
 {
     double sumOfIncomes = 0.0, sumOfExpenses = 0.0, balance = 0.0;
+    string date = Date::getCurrentDate();
+    string month = Date::getMonthFromDate(date);
+    string year = Date::getYearFromDate(date);
+    int lowerLimit = AuxiliaryMethods::stringToIntConversion(year+month+"01");
+    int upperLimit = AuxiliaryMethods::stringToIntConversion(year+month+"31");
     cout << "***BILANS Z BIEZACEGO MIESIACA***" << endl << endl;
     cout << "       >>> Przychody <<<" << endl;
 
     sort(incomes.begin(), incomes.end() );
     for(int i = 0; i < incomes.size(); i++)
     {
-    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
-    cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
-    cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
-    cout << "****************" << endl;
-    sumOfIncomes += incomes[i].getAmount();
+        if(incomes[i].getDate() >= lowerLimit && incomes[i].getDate() <= upperLimit)
+        {
+            cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
+            cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
+            cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
+            cout << "****************" << endl;
+            sumOfIncomes += incomes[i].getAmount();
+        }
     }
     cout << endl << "       >>> Wydatki <<<" << endl;
 
     sort(expenses.begin(), expenses.end() );
     for(int j = 0; j < expenses.size(); j++)
     {
-    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
-    cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
-    cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
-    cout << "****************" << endl;
-    sumOfExpenses += expenses[j].getAmount();
+        if(expenses[j].getDate() >= lowerLimit && expenses[j].getDate() <= upperLimit)
+        {
+            cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
+            cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
+            cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
+            cout << "****************" << endl;
+            sumOfExpenses += expenses[j].getAmount();
+        }
     }
     balance = sumOfIncomes - sumOfExpenses;
     cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
@@ -377,28 +388,43 @@ void OperationManager::printBalanceFromCurrentMonth()
 void OperationManager::printBalanceFromPreviousMonth()
 {
     double sumOfIncomes = 0.0, sumOfExpenses = 0.0, balance = 0.0;
+    string date = Date::getCurrentDate();
+    string month = Date::getMonthFromDate(date);
+    string year = Date::getYearFromDate(date);
+    string previousMonth = Date::getPreviousMonth(month);
+    if(previousMonth == "12")
+        year = Date::getPreviousYear(year);
+
+    int lowerLimit = AuxiliaryMethods::stringToIntConversion(year+previousMonth+"01");
+    int upperLimit = AuxiliaryMethods::stringToIntConversion(year+previousMonth+"31");
     cout << "***BILANS Z POPRZEDNIEGO MIESIACA***" << endl << endl;
     cout << "       >>> Przychody <<<" << endl;
 
     sort(incomes.begin(), incomes.end() );
     for(int i = 0; i < incomes.size(); i++)
     {
-    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
-    cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
-    cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
-    cout << "****************" << endl;
-    sumOfIncomes += incomes[i].getAmount();
+        if(incomes[i].getDate() >= lowerLimit && incomes[i].getDate() <= upperLimit)
+        {
+            cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
+            cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
+            cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
+            cout << "****************" << endl;
+            sumOfIncomes += incomes[i].getAmount();
+        }
     }
     cout << endl << "       >>> Wydatki <<<" << endl;
 
     sort(expenses.begin(), expenses.end() );
     for(int j = 0; j < expenses.size(); j++)
     {
-    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
-    cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
-    cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
-    cout << "****************" << endl;
-    sumOfExpenses += expenses[j].getAmount();
+        if(expenses[j].getDate() >= lowerLimit && expenses[j].getDate() <= upperLimit)
+        {
+            cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
+            cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
+            cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
+            cout << "****************" << endl;
+            sumOfExpenses += expenses[j].getAmount();
+        }
     }
     balance = sumOfIncomes - sumOfExpenses;
     cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
@@ -410,32 +436,53 @@ void OperationManager::printBalanceFromPreviousMonth()
 void OperationManager::printBalanceOfSelectedPeriod()
 {
     double sumOfIncomes = 0.0, sumOfExpenses = 0.0, balance = 0.0;
+
     cout << "***BILANS Z WYBRANEGO OKRESU***" << endl << endl;
-    cout << "       >>> Przychody <<<" << endl;
+    cout << "Wpisz date poczatkowa w formacie rrrr-mm-dd: ";
+    string initialDate = AuxiliaryMethods::getLine();
+    cout << "Wpisz date koncowa w formacie rrrr-mm-dd: ";
+    string finalDate = AuxiliaryMethods::getLine();
 
-    sort(incomes.begin(), incomes.end() );
-    for(int i = 0; i < incomes.size(); i++)
+    if(Date::isDateCorrect(initialDate) && Date::isDateCorrect(finalDate))
     {
-    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
-    cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
-    cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
-    cout << "****************" << endl;
-    sumOfIncomes += incomes[i].getAmount();
-    }
-    cout << endl << "       >>> Wydatki <<<" << endl;
+        int initialDateInt = AuxiliaryMethods::dateConversionToInt(initialDate);
+        int finalDateInt = AuxiliaryMethods::dateConversionToInt(finalDate);
+        cout << "       >>> Przychody <<<" << endl;
+        sort(incomes.begin(), incomes.end() );
+        for(int i = 0; i < incomes.size(); i++)
+        {
+            if(incomes[i].getDate() >= initialDateInt && incomes[i].getDate() <= finalDateInt)
+            {
+                cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
+                cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
+                cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
+                cout << "****************" << endl;
+                sumOfIncomes += incomes[i].getAmount();
+            }
+        }
+        cout << endl << "       >>> Wydatki <<<" << endl;
 
-    sort(expenses.begin(), expenses.end() );
-    for(int j = 0; j < expenses.size(); j++)
-    {
-    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
-    cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
-    cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
-    cout << "****************" << endl;
-    sumOfExpenses += expenses[j].getAmount();
+        sort(expenses.begin(), expenses.end() );
+        for(int j = 0; j < expenses.size(); j++)
+        {
+            if(expenses[j].getDate() >= initialDateInt && expenses[j].getDate() <= finalDateInt)
+            {
+                cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
+                cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
+                cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
+                cout << "****************" << endl;
+                sumOfExpenses += expenses[j].getAmount();
+            }
+        }
+        balance = sumOfIncomes - sumOfExpenses;
+        cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
+        cout << "Suma wydatkow: " << sumOfExpenses << " zl" << endl;
+        cout << "Saldo: " << balance << " zl" << endl;
+        system("pause");
     }
-    balance = sumOfIncomes - sumOfExpenses;
-    cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
-    cout << "Suma wydatkow: " << sumOfExpenses << " zl" << endl;
-    cout << "Saldo: " << balance << " zl" << endl;
-    system("pause");
+    else
+    {
+        cout << "Wprowadziles niepoprawna date!" << endl;
+        system("pause");
+    }
 }

@@ -7,7 +7,6 @@
 #include "User.h"
 #include "FileWithUsers.h"
 #include "AuxiliaryMethods.h"
-#include "OperationManager.h"
 
 using namespace std;
 
@@ -25,7 +24,7 @@ public:
     {
         users = fileWithUsers.loadUsersFromFile();
         loggedInUserId = 0;
-    }
+    };
     void userRegister();
     bool isUserLoggedIn();
     void userLogin();

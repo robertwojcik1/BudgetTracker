@@ -1,8 +1,8 @@
 #ifndef BUDGETTRACKER_H
 #define BUDGETTRACKER_H
-
 #include <iostream>
 #include "UserManager.h"
+#include "OperationManager.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;
@@ -17,7 +17,7 @@ class BudgetTracker
 public:
     BudgetTracker(string fileWithUsersName, string fileWithIncomesName, string fileWithExpensesName) : userManager(fileWithUsersName), FILE_WITH_INCOMES_NAME(fileWithIncomesName), FILE_WITH_EXPENSES_NAME(fileWithExpensesName)
     {
-    operationManager = NULL;
+        operationManager = NULL;
     };
     ~BudgetTracker()
     {

@@ -41,29 +41,38 @@ vector<Income> FileWithIncomes::loadIncomesFromFile(vector<Income> incomes, int 
 {
     Income income;
 
-    incomesXml.Load(FILE_WITH_INCOMES_NAME);
-    incomesXml.FindElem();
-    incomesXml.IntoElem();
-    while (incomesXml.FindElem("Income"))
+    bool fileExists = incomesXml.Load(FILE_WITH_INCOMES_NAME);
+    if(fileExists)
     {
+        incomesXml.FindElem();
         incomesXml.IntoElem();
-        incomesXml.FindElem( "incomeId" );
-        income.setId(atoi( MCD_2PCSZ(incomesXml.GetData()) ));
-        incomesXml.FindElem( "userId" );
-        if(LOGGED_IN_USER_ID != atoi(MCD_2PCSZ(incomesXml.GetData()) ))
+        while (incomesXml.FindElem("Income"))
         {
+            incomesXml.IntoElem();
+            incomesXml.FindElem( "incomeId" );
+            income.setId(atoi( MCD_2PCSZ(incomesXml.GetData()) ));
+            incomesXml.FindElem( "userId" );
+            if(LOGGED_IN_USER_ID != atoi(MCD_2PCSZ(incomesXml.GetData()) ))
+            {
+                incomesXml.OutOfElem();
+                continue;
+            }
+            income.setUserId(atoi(MCD_2PCSZ(incomesXml.GetData()) ));
+            incomesXml.FindElem( "date" );
+            income.setDate(AuxiliaryMethods::dateConversionToInt(incomesXml.GetData() ));
+            incomesXml.FindElem( "item" );
+            income.setItem(incomesXml.GetData());
+            incomesXml.FindElem( "amount" );
+            income.setAmount(stod(incomesXml.GetData()));
             incomesXml.OutOfElem();
-            continue;
+            incomes.push_back(income);
         }
-        income.setUserId(atoi(MCD_2PCSZ(incomesXml.GetData()) ));
-        incomesXml.FindElem( "date" );
-        income.setDate(AuxiliaryMethods::dateConversionToInt(incomesXml.GetData() ));
-        incomesXml.FindElem( "item" );
-        income.setItem(incomesXml.GetData());
-        incomesXml.FindElem( "amount" );
-        income.setAmount(stod(incomesXml.GetData()));
-        incomesXml.OutOfElem();
-        incomes.push_back(income);
+        return incomes;
     }
-    return incomes;
+    else
+    {
+        cout << "Nie odnaleziono pliku z przychodami!" << endl;
+        system("pause");
+        return incomes;
+    }
 }

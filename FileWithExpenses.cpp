@@ -40,29 +40,38 @@ vector <Expense> FileWithExpenses::loadExpensesFromFile(vector <Expense> expense
 {
     Expense expense;
 
-    expensesXml.Load(FILE_WITH_EXPENSES_NAME);
-    expensesXml.FindElem();
-    expensesXml.IntoElem();
-    while (expensesXml.FindElem("Expense"))
+    bool fileExists = expensesXml.Load(FILE_WITH_EXPENSES_NAME);
+    if(fileExists)
     {
+        expensesXml.FindElem();
         expensesXml.IntoElem();
-        expensesXml.FindElem( "expenseId" );
-        expense.setId(atoi( MCD_2PCSZ(expensesXml.GetData()) ));
-        expensesXml.FindElem( "userId" );
-        if(LOGGED_IN_USER_ID != atoi(MCD_2PCSZ(expensesXml.GetData()) ))
+        while (expensesXml.FindElem("Expense"))
         {
+            expensesXml.IntoElem();
+            expensesXml.FindElem( "expenseId" );
+            expense.setId(atoi( MCD_2PCSZ(expensesXml.GetData()) ));
+            expensesXml.FindElem( "userId" );
+            if(LOGGED_IN_USER_ID != atoi(MCD_2PCSZ(expensesXml.GetData()) ))
+            {
+                expensesXml.OutOfElem();
+                continue;
+            }
+            expense.setUserId(atoi(MCD_2PCSZ(expensesXml.GetData()) ));
+            expensesXml.FindElem( "date" );
+            expense.setDate(AuxiliaryMethods::dateConversionToInt(expensesXml.GetData() ));
+            expensesXml.FindElem( "item" );
+            expense.setItem(expensesXml.GetData());
+            expensesXml.FindElem( "amount" );
+            expense.setAmount(stod(expensesXml.GetData()));
             expensesXml.OutOfElem();
-            continue;
+            expenses.push_back(expense);
         }
-        expense.setUserId(atoi(MCD_2PCSZ(expensesXml.GetData()) ));
-        expensesXml.FindElem( "date" );
-        expense.setDate(AuxiliaryMethods::dateConversionToInt(expensesXml.GetData() ));
-        expensesXml.FindElem( "item" );
-        expense.setItem(expensesXml.GetData());
-        expensesXml.FindElem( "amount" );
-        expense.setAmount(stod(expensesXml.GetData()));
-        expensesXml.OutOfElem();
-        expenses.push_back(expense);
+        return expenses;
     }
-    return expenses;
+    else
+    {
+        cout << "Nie odnaleziono pliku z wydatkami!" << endl;
+        system("pause");
+        return expenses;
+    }
 }

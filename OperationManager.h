@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <sstream>
 #include "FileWithIncomes.h"
 #include "FileWithExpenses.h"
 #include "Income.h"
@@ -37,8 +38,7 @@ public:
     {
         incomes = fileWithIncomes.loadIncomesFromFile(incomes, LOGGED_IN_USER_ID);
         expenses = fileWithExpenses.loadExpensesFromFile(expenses, LOGGED_IN_USER_ID);
-    }
-
+    };
     void addIncome(int LOGGED_IN_USER_ID);
     char selectOptionFromAddIncomeMenu();
     void addExpense(int LOGGED_IN_USER_ID);

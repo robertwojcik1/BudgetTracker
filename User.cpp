@@ -3,7 +3,7 @@
 void User::setUserId(int userId)
 {
     if( userId > 0 )
-    this->userId = userId;
+        this->userId = userId;
 }
 
 void User::setLogin(string login)

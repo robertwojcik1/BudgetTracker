@@ -147,3 +147,27 @@ bool Date::isLeapYear(int year)
     return leapYear;
 }
 
+string Date::getPreviousMonth(string month)
+{
+    int previousMonth = AuxiliaryMethods::stringToIntConversion(month) - 1;
+    string previousMonthStr = AuxiliaryMethods::intToStringConversion(previousMonth);
+    previousMonthStr = addMissingZeroToDate(previousMonthStr);
+    if(previousMonthStr == "00")
+        previousMonthStr = "12";
+
+    return previousMonthStr;
+}
+
+string Date::getPreviousYear(string year)
+{
+    int previousYear = AuxiliaryMethods::stringToIntConversion(year) - 1;
+    string previousYearStr = AuxiliaryMethods::intToStringConversion(previousYear);
+    if(previousYearStr == "1999")
+    {
+        cout << "Za wczesna data!" << endl;
+        system("pause");
+        return "";
+    }
+    return previousYearStr;
+}
+

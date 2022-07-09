@@ -23,7 +23,7 @@ public:
             xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
             xml.AddElem("Users");
         }
-    }
+    };
     void addUserToFile(User user);
     vector<User> loadUsersFromFile();
     void changePasswordInFile(string newPassword, int loggedInUserId);
