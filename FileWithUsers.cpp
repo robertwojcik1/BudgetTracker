@@ -2,43 +2,50 @@
 
 void FileWithUsers::addUserToFile(User user)
 {
-    xml.ResetPos();
-    xml.FindElem();
-    xml.IntoElem();
-    xml.AddElem("User");
-    xml.IntoElem();
-    xml.AddElem("UserId", user.getUserId());
-    xml.AddElem("Login", user.getLogin());
-    xml.AddElem("Password", user.getPassword());
-    xml.AddElem("Name", user.getName());
-    xml.AddElem("Surname", user.getSurname());
-    xml.ResetPos();
-    xml.Save(FILE_WITH_USERS_NAME);
+    CMarkup usersXml;
+    usersXml.Load(FILE_WITH_USERS_NAME);
+    if(!usersXml.FindElem("Users"))
+    {
+        usersXml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        usersXml.AddElem("Users");
+    }
+
+    usersXml.IntoElem();
+    usersXml.AddElem("User");
+    usersXml.IntoElem();
+    usersXml.AddElem("UserId", user.getUserId());
+    usersXml.AddElem("Login", user.getLogin());
+    usersXml.AddElem("Password", user.getPassword());
+    usersXml.AddElem("Name", user.getName());
+    usersXml.AddElem("Surname", user.getSurname());
+    usersXml.OutOfElem();
+    usersXml.Save(FILE_WITH_USERS_NAME);
 }
 
 vector<User> FileWithUsers::loadUsersFromFile()
 {
+    CMarkup usersXml;
     User user;
     vector <User> users;
-    bool fileExists = xml.Load(FILE_WITH_USERS_NAME);
+    bool fileExists = usersXml.Load(FILE_WITH_USERS_NAME);
     if(fileExists)
     {
-        xml.FindElem();
-        xml.IntoElem();
-        while (xml.FindElem("User"))
+        usersXml.FindElem();
+        usersXml.IntoElem();
+        while (usersXml.FindElem("User"))
         {
-            xml.IntoElem();
-            xml.FindElem( "UserId" );
-            user.setUserId(atoi( MCD_2PCSZ(xml.GetData()) ));
-            xml.FindElem( "Login" );
-            user.setLogin(xml.GetData());
-            xml.FindElem( "Password" );
-            user.setPassword(xml.GetData());
-            xml.FindElem( "Name" );
-            user.setName(xml.GetData());
-            xml.FindElem( "Surname" );
-            user.setSurname(xml.GetData());
-            xml.OutOfElem();
+            usersXml.IntoElem();
+            usersXml.FindElem( "UserId" );
+            user.setUserId(atoi( MCD_2PCSZ(usersXml.GetData()) ));
+            usersXml.FindElem( "Login" );
+            user.setLogin(usersXml.GetData());
+            usersXml.FindElem( "Password" );
+            user.setPassword(usersXml.GetData());
+            usersXml.FindElem( "Name" );
+            user.setName(usersXml.GetData());
+            usersXml.FindElem( "Surname" );
+            user.setSurname(usersXml.GetData());
+            usersXml.OutOfElem();
             users.push_back(user);
         }
         return users;
@@ -53,20 +60,22 @@ vector<User> FileWithUsers::loadUsersFromFile()
 
 void FileWithUsers::changePasswordInFile(string newPassword, int loggedInUserId)
 {
-    xml.ResetPos();
-    xml.FindElem();
-    xml.IntoElem();
-    while (xml.FindElem("User"))
+    CMarkup usersXml;
+
+    usersXml.Load(FILE_WITH_USERS_NAME);
+    usersXml.FindElem();
+    usersXml.IntoElem();
+    while (usersXml.FindElem("User"))
     {
-        xml.IntoElem();
-        xml.FindElem( "UserId" );
-        if(xml.GetData() == AuxiliaryMethods::intToStringConversion(loggedInUserId))
+        usersXml.IntoElem();
+        usersXml.FindElem( "UserId" );
+        if(usersXml.GetData() == AuxiliaryMethods::intToStringConversion(loggedInUserId))
         {
-            xml.FindElem( "Password" );
-            xml.RemoveElem();
-            xml.AddElem("Password", newPassword);
+            usersXml.FindElem( "Password" );
+            usersXml.RemoveElem();
+            usersXml.AddElem("Password", newPassword);
         }
-        xml.OutOfElem();
+        usersXml.OutOfElem();
     }
-    xml.Save(FILE_WITH_USERS_NAME);
+    usersXml.Save(FILE_WITH_USERS_NAME);
 }

@@ -2,10 +2,17 @@
 
 void FileWithExpenses::addExpenseToFile(Expense expense)
 {
+    CMarkup expensesXml;
+    expensesXml.Load(FILE_WITH_EXPENSES_NAME);
+    if(!expensesXml.FindElem("Expenses"))
+    {
+        expensesXml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        expensesXml.AddElem("Expenses");
+    }
+
     string amountString = AuxiliaryMethods::doubleToStringConversion(expense.getAmount());
     string date = AuxiliaryMethods::dateConversionToString(expense.getDate());
-    expensesXml.Load(FILE_WITH_EXPENSES_NAME);
-    expensesXml.ResetPos();
+
     expensesXml.FindElem();
     expensesXml.IntoElem();
     expensesXml.AddElem("Expense");
@@ -22,8 +29,10 @@ void FileWithExpenses::addExpenseToFile(Expense expense)
 
 int FileWithExpenses::getLastExpenseId()
 {
+    CMarkup expensesXml;
     int expenseId = 0;
-    expensesXml.Load( FILE_WITH_EXPENSES_NAME );
+
+    expensesXml.Load(FILE_WITH_EXPENSES_NAME);
     expensesXml.FindElem();
     expensesXml.IntoElem();
     while ( expensesXml.FindElem("Expense") )
@@ -38,6 +47,7 @@ int FileWithExpenses::getLastExpenseId()
 
 vector <Expense> FileWithExpenses::loadExpensesFromFile(vector <Expense> expenses, int LOGGED_IN_USER_ID)
 {
+    CMarkup expensesXml;
     Expense expense;
 
     bool fileExists = expensesXml.Load(FILE_WITH_EXPENSES_NAME);

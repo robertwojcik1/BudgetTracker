@@ -2,11 +2,18 @@
 
 void FileWithIncomes::addIncomeToFile(Income income)
 {
+    CMarkup incomesXml;
+
+    incomesXml.Load(FILE_WITH_INCOMES_NAME);
+    if(!incomesXml.FindElem("Incomes"))
+    {
+        incomesXml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        incomesXml.AddElem("Incomes");
+    }
+
     string amountString = AuxiliaryMethods::doubleToStringConversion(income.getAmount());
     string date = AuxiliaryMethods::dateConversionToString(income.getDate());
-    incomesXml.Load(FILE_WITH_INCOMES_NAME);
-    incomesXml.ResetPos();
-    incomesXml.FindElem();
+
     incomesXml.IntoElem();
     incomesXml.AddElem("Income");
     incomesXml.IntoElem();
@@ -23,7 +30,9 @@ void FileWithIncomes::addIncomeToFile(Income income)
 
 int FileWithIncomes::getLastIncomeId()
 {
+    CMarkup incomesXml;
     int incomeId = 0;
+
     incomesXml.Load(FILE_WITH_INCOMES_NAME);
     incomesXml.FindElem();
     incomesXml.IntoElem();
@@ -39,6 +48,7 @@ int FileWithIncomes::getLastIncomeId()
 
 vector<Income> FileWithIncomes::loadIncomesFromFile(vector<Income> incomes, int LOGGED_IN_USER_ID)
 {
+    CMarkup incomesXml;
     Income income;
 
     bool fileExists = incomesXml.Load(FILE_WITH_INCOMES_NAME);
