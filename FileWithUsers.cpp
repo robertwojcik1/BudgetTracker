@@ -13,7 +13,7 @@ void FileWithUsers::addUserToFile(User user)
     usersXml.IntoElem();
     usersXml.AddElem("User");
     usersXml.IntoElem();
-    usersXml.AddElem("UserId", user.getUserId());
+    usersXml.AddElem("Id", user.getUserId());
     usersXml.AddElem("Login", user.getLogin());
     usersXml.AddElem("Password", user.getPassword());
     usersXml.AddElem("Name", user.getName());
@@ -36,15 +36,15 @@ vector<User> FileWithUsers::loadUsersFromFile()
         while (usersXml.FindElem("User"))
         {
             usersXml.IntoElem();
-            usersXml.FindElem( "UserId" );
+            usersXml.FindElem("Id");
             user.setUserId(atoi( MCD_2PCSZ(usersXml.GetData()) ));
-            usersXml.FindElem( "Login" );
+            usersXml.FindElem("Login");
             user.setLogin(usersXml.GetData());
-            usersXml.FindElem( "Password" );
+            usersXml.FindElem("Password");
             user.setPassword(usersXml.GetData());
-            usersXml.FindElem( "Name" );
+            usersXml.FindElem("Name");
             user.setName(usersXml.GetData());
-            usersXml.FindElem( "Surname" );
+            usersXml.FindElem("Surname");
             user.setSurname(usersXml.GetData());
             usersXml.OutOfElem();
             users.push_back(user);
@@ -65,12 +65,11 @@ void FileWithUsers::changePasswordInFile(string newPassword, int loggedInUserId)
     while (usersXml.FindElem("User"))
     {
         usersXml.IntoElem();
-        usersXml.FindElem( "UserId" );
+        usersXml.FindElem("Id");
         if(usersXml.GetData() == AuxiliaryMethods::intToStringConversion(loggedInUserId))
         {
-            usersXml.FindElem( "Password" );
-            usersXml.RemoveElem();
-            usersXml.AddElem("Password", newPassword);
+            usersXml.FindElem("Password");
+            usersXml.SetData(newPassword);
         }
         usersXml.OutOfElem();
     }

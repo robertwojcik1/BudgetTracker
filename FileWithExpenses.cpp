@@ -17,7 +17,7 @@ void FileWithExpenses::addExpenseToFile(Expense expense)
     expensesXml.IntoElem();
     expensesXml.AddElem("Expense");
     expensesXml.IntoElem();
-    expensesXml.AddElem("expenseId", expense.getId());
+    expensesXml.AddElem("Id", expense.getId());
     expensesXml.AddElem("userId", expense.getUserId());
     expensesXml.AddElem("date", date);
     expensesXml.AddElem("item", expense.getItem());
@@ -38,7 +38,7 @@ int FileWithExpenses::getLastExpenseId()
     while ( expensesXml.FindElem("Expense") )
     {
         expensesXml.IntoElem();
-        expensesXml.FindElem( "expenseId" );
+        expensesXml.FindElem( "Id" );
         expenseId = atoi( MCD_2PCSZ(expensesXml.GetData()) );
         expensesXml.OutOfElem();
     }
@@ -58,7 +58,7 @@ vector <Expense> FileWithExpenses::loadExpensesFromFile(vector <Expense> expense
         while (expensesXml.FindElem("Expense"))
         {
             expensesXml.IntoElem();
-            expensesXml.FindElem( "expenseId" );
+            expensesXml.FindElem( "Id" );
             expense.setId(atoi( MCD_2PCSZ(expensesXml.GetData()) ));
             expensesXml.FindElem( "userId" );
             if(LOGGED_IN_USER_ID != atoi(MCD_2PCSZ(expensesXml.GetData()) ))

@@ -17,7 +17,7 @@ void FileWithIncomes::addIncomeToFile(Income income)
     incomesXml.IntoElem();
     incomesXml.AddElem("Income");
     incomesXml.IntoElem();
-    incomesXml.AddElem("incomeId", income.getId());
+    incomesXml.AddElem("Id", income.getId());
     incomesXml.AddElem("userId", income.getUserId());
     incomesXml.AddElem("date", date);
     incomesXml.AddElem("item", income.getItem());
@@ -39,7 +39,7 @@ int FileWithIncomes::getLastIncomeId()
     while ( incomesXml.FindElem("Income") )
     {
         incomesXml.IntoElem();
-        incomesXml.FindElem( "incomeId" );
+        incomesXml.FindElem( "Id" );
         incomeId = atoi( MCD_2PCSZ(incomesXml.GetData()) );
         incomesXml.OutOfElem();
     }
@@ -59,7 +59,7 @@ vector<Income> FileWithIncomes::loadIncomesFromFile(vector<Income> incomes, int 
         while (incomesXml.FindElem("Income"))
         {
             incomesXml.IntoElem();
-            incomesXml.FindElem( "incomeId" );
+            incomesXml.FindElem( "Id" );
             income.setId(atoi( MCD_2PCSZ(incomesXml.GetData()) ));
             incomesXml.FindElem( "userId" );
             if(LOGGED_IN_USER_ID != atoi(MCD_2PCSZ(incomesXml.GetData()) ))
