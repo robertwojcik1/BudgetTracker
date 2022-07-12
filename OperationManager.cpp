@@ -458,39 +458,48 @@ void OperationManager::printBalanceOfSelectedPeriod()
         {
             int initialDateInt = AuxiliaryMethods::dateConversionToInt(initialDate);
             int finalDateInt = AuxiliaryMethods::dateConversionToInt(finalDate);
-            cout << "       >>> Przychody <<<" << endl;
-            sort(incomes.begin(), incomes.end() );
-            for(int i = 0; i < incomes.size(); i++)
-            {
-                if(incomes[i].getDate() >= initialDateInt && incomes[i].getDate() <= finalDateInt)
-                {
-                    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
-                    cout << "Kategoria przychodu: " << incomes[i].getItem() << endl <<fixed;
-                    cout << "Kwota:               " << setprecision(2) << incomes[i].getAmount() << " zl" << endl;
-                    cout << "****************" << endl;
-                    sumOfIncomes += incomes[i].getAmount();
-                }
-            }
-            cout << endl << "       >>> Wydatki <<<" << endl;
 
-            sort(expenses.begin(), expenses.end() );
-            for(int j = 0; j < expenses.size(); j++)
+            if(initialDateInt <= finalDateInt)
             {
-                if(expenses[j].getDate() >= initialDateInt && expenses[j].getDate() <= finalDateInt)
+                cout << "       >>> Przychody <<<" << endl;
+                sort(incomes.begin(), incomes.end() );
+                for(int i = 0; i < incomes.size(); i++)
                 {
-                    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
-                    cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
-                    cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
-                    cout << "****************" << endl;
-                    sumOfExpenses += expenses[j].getAmount();
+                    if(incomes[i].getDate() >= initialDateInt && incomes[i].getDate() <= finalDateInt)
+                    {
+                        cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
+                        cout << "Kategoria przychodu: " << incomes[i].getItem() << endl <<fixed;
+                        cout << "Kwota:               " << setprecision(2) << incomes[i].getAmount() << " zl" << endl;
+                        cout << "****************" << endl;
+                        sumOfIncomes += incomes[i].getAmount();
+                    }
                 }
+                cout << endl << "       >>> Wydatki <<<" << endl;
+
+                sort(expenses.begin(), expenses.end() );
+                for(int j = 0; j < expenses.size(); j++)
+                {
+                    if(expenses[j].getDate() >= initialDateInt && expenses[j].getDate() <= finalDateInt)
+                    {
+                        cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
+                        cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
+                        cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
+                        cout << "****************" << endl;
+                        sumOfExpenses += expenses[j].getAmount();
+                    }
+                }
+                balance = sumOfIncomes - sumOfExpenses;
+                cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
+                cout << "Suma wydatkow: " << sumOfExpenses << " zl" << endl;
+                cout << "Saldo: " << balance << " zl" << endl;
+                system("pause");
+                return;
             }
-            balance = sumOfIncomes - sumOfExpenses;
-            cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
-            cout << "Suma wydatkow: " << sumOfExpenses << " zl" << endl;
-            cout << "Saldo: " << balance << " zl" << endl;
-            system("pause");
-            return;
+            else
+            {
+                cout << "Data koncowa jest wczesniejsza niz poczatkowa! Wpisz ponownie daty." << endl;
+                system("pause");
+            }
         }
         else
         {
