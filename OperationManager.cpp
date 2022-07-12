@@ -365,8 +365,8 @@ void OperationManager::printBalanceFromCurrentMonth()
         if(incomes[i].getDate() >= lowerLimit && incomes[i].getDate() <= upperLimit)
         {
             cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
-            cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
-            cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
+            cout << "Kategoria przychodu: " << incomes[i].getItem() << endl << fixed;
+            cout << "Kwota:               " << setprecision(2) <<incomes[i].getAmount() << " zl" << endl;
             cout << "****************" << endl;
             sumOfIncomes += incomes[i].getAmount();
         }
@@ -414,8 +414,8 @@ void OperationManager::printBalanceFromPreviousMonth()
         if(incomes[i].getDate() >= lowerLimit && incomes[i].getDate() <= upperLimit)
         {
             cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
-            cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
-            cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
+            cout << "Kategoria przychodu: " << incomes[i].getItem() << endl << fixed;
+            cout << "Kwota:               " << setprecision(2) << incomes[i].getAmount() << " zl" << endl;
             cout << "****************" << endl;
             sumOfIncomes += incomes[i].getAmount();
         }
@@ -465,8 +465,8 @@ void OperationManager::printBalanceOfSelectedPeriod()
                 if(incomes[i].getDate() >= initialDateInt && incomes[i].getDate() <= finalDateInt)
                 {
                     cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
-                    cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
-                    cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
+                    cout << "Kategoria przychodu: " << incomes[i].getItem() << endl <<fixed;
+                    cout << "Kwota:               " << setprecision(2) << incomes[i].getAmount() << " zl" << endl;
                     cout << "****************" << endl;
                     sumOfIncomes += incomes[i].getAmount();
                 }
