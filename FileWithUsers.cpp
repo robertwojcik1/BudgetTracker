@@ -27,6 +27,7 @@ vector<User> FileWithUsers::loadUsersFromFile()
     CMarkup usersXml;
     User user;
     vector <User> users;
+
     bool fileExists = usersXml.Load(FILE_WITH_USERS_NAME);
     if(fileExists)
     {
@@ -51,11 +52,7 @@ vector<User> FileWithUsers::loadUsersFromFile()
         return users;
     }
     else
-    {
-        cout << "Nie odnaleziono pliku z uzytkownikami!" << endl;
-        system("pause");
         return users;
-    }
 }
 
 void FileWithUsers::changePasswordInFile(string newPassword, int loggedInUserId)

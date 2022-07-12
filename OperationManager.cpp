@@ -44,46 +44,49 @@ void OperationManager::addIncomeWithEnteredDate(int LOGGED_IN_USER_ID)
     double incomeAmount = 0.0;
     char select;
 
-    system("cls");
-    cout << " ***APLIKACJA BUDZETOWA***    " << endl;
-    cout << "Wpisz date w formacie rrrr-mm-dd: ";
-    date = AuxiliaryMethods::getLine();
-
-    if(Date::isDateCorrect(date))
+    while(true)
     {
-        select = selectIncomeCategory();
-        switch(select)
+        system("cls");
+        cout << " ***APLIKACJA BUDZETOWA***    " << endl;
+        cout << "Wpisz date w formacie rrrr-mm-dd: ";
+        date = AuxiliaryMethods::getLine();
+
+        if(Date::isDateCorrect(date))
         {
-        case '1':
-            incomeCategory = "Wyplata";
-            break;
-        case '2':
-            incomeCategory = "Sprzedaz internetowa";
-            break;
-        case '3':
-            incomeCategory = enterIncomeCategory();
-            break;
-        case '9':
+            select = selectIncomeCategory();
+            switch(select)
+            {
+            case '1':
+                incomeCategory = "Wyplata";
+                break;
+            case '2':
+                incomeCategory = "Sprzedaz internetowa";
+                break;
+            case '3':
+                incomeCategory = enterIncomeCategory();
+                break;
+            case '9':
+                return;
+            default:
+                cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+                system("pause");
+            }
+            incomeAmount = enterIncomeAmount();
+            income.setId(fileWithIncomes.getLastIncomeId() + 1);
+            income.setUserId(LOGGED_IN_USER_ID);
+            income.setDate(AuxiliaryMethods::dateConversionToInt(date));
+            income.setItem(incomeCategory);
+            income.setAmount(incomeAmount);
+            incomes.push_back(income);
+
+            fileWithIncomes.addIncomeToFile(income);
             return;
-        default:
-            cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+        }
+        else
+        {
+            cout << "Wprowadzona data jest nieprawidlowa! Sprobuj ponownie." << endl;
             system("pause");
         }
-        incomeAmount = enterIncomeAmount();
-        income.setId(fileWithIncomes.getLastIncomeId() + 1);
-        income.setUserId(LOGGED_IN_USER_ID);
-        income.setDate(AuxiliaryMethods::dateConversionToInt(date));
-        income.setItem(incomeCategory);
-        income.setAmount(incomeAmount);
-        incomes.push_back(income);
-
-        fileWithIncomes.addIncomeToFile(income);
-    }
-    else
-    {
-        cout << "Wprowadzona data jest nieprawidlowa!" << endl;
-        system("pause");
-        return;
     }
 }
 
@@ -270,52 +273,55 @@ void OperationManager::addExpenseWithEnteredDate(int LOGGED_IN_USER_ID)
     double expenseAmount = 0.0;
     char select;
 
-    system("cls");
-    cout << " ***APLIKACJA BUDZETOWA***    " << endl;
-    cout << "Wpisz date w formacie rrrr-mm-dd: ";
-    date = AuxiliaryMethods::getLine();
-
-    if(Date::isDateCorrect(date))
+    while(true)
     {
-        select = selectExpenseCategory();
-        switch(select)
+        system("cls");
+        cout << " ***APLIKACJA BUDZETOWA***    " << endl;
+        cout << "Wpisz date w formacie rrrr-mm-dd: ";
+        date = AuxiliaryMethods::getLine();
+
+        if(Date::isDateCorrect(date))
         {
-        case '1':
-            expenseCategory = "Rachunki";
-            break;
-        case '2':
-            expenseCategory = "Kredyt";
-            break;
-        case '3':
-            expenseCategory = "Raty";
-            break;
-        case '4':
-            expenseCategory = "Zakupy";
-            break;
-        case '5':
-            expenseCategory = enterExpenseCategory();
-            break;
-        case '9':
+            select = selectExpenseCategory();
+            switch(select)
+            {
+            case '1':
+                expenseCategory = "Rachunki";
+                break;
+            case '2':
+                expenseCategory = "Kredyt";
+                break;
+            case '3':
+                expenseCategory = "Raty";
+                break;
+            case '4':
+                expenseCategory = "Zakupy";
+                break;
+            case '5':
+                expenseCategory = enterExpenseCategory();
+                break;
+            case '9':
+                return;
+            default:
+                cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+                system("pause");
+            }
+            expenseAmount = enterExpenseAmount();
+            expense.setId(fileWithExpenses.getLastExpenseId() + 1);
+            expense.setUserId(LOGGED_IN_USER_ID);
+            expense.setDate(AuxiliaryMethods::dateConversionToInt(date));
+            expense.setItem(expenseCategory);
+            expense.setAmount(expenseAmount);
+            expenses.push_back(expense);
+
+            fileWithExpenses.addExpenseToFile(expense);
             return;
-        default:
-            cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+        }
+        else
+        {
+            cout << "Wprowadzona data jest nieprawidlowa! Sprobuj ponownie." << endl;
             system("pause");
         }
-        expenseAmount = enterExpenseAmount();
-        expense.setId(fileWithExpenses.getLastExpenseId() + 1);
-        expense.setUserId(LOGGED_IN_USER_ID);
-        expense.setDate(AuxiliaryMethods::dateConversionToInt(date));
-        expense.setItem(expenseCategory);
-        expense.setAmount(expenseAmount);
-        expenses.push_back(expense);
-
-        fileWithExpenses.addExpenseToFile(expense);
-    }
-    else
-    {
-        cout << "Wprowadzona data jest nieprawidlowa!" << endl;
-        system("pause");
-        return;
     }
 }
 
@@ -349,6 +355,7 @@ void OperationManager::printBalanceFromCurrentMonth()
     string year = Date::getYearFromDate(date);
     int lowerLimit = AuxiliaryMethods::stringToIntConversion(year+month+"01");
     int upperLimit = AuxiliaryMethods::stringToIntConversion(year+month+"31");
+    system("cls");
     cout << "***BILANS Z BIEZACEGO MIESIACA***" << endl << endl;
     cout << "       >>> Przychody <<<" << endl;
 
@@ -397,6 +404,7 @@ void OperationManager::printBalanceFromPreviousMonth()
 
     int lowerLimit = AuxiliaryMethods::stringToIntConversion(year+previousMonth+"01");
     int upperLimit = AuxiliaryMethods::stringToIntConversion(year+previousMonth+"31");
+    system("cls");
     cout << "***BILANS Z POPRZEDNIEGO MIESIACA***" << endl << endl;
     cout << "       >>> Przychody <<<" << endl;
 
@@ -437,52 +445,57 @@ void OperationManager::printBalanceOfSelectedPeriod()
 {
     double sumOfIncomes = 0.0, sumOfExpenses = 0.0, balance = 0.0;
 
-    cout << "***BILANS Z WYBRANEGO OKRESU***" << endl << endl;
-    cout << "Wpisz date poczatkowa w formacie rrrr-mm-dd: ";
-    string initialDate = AuxiliaryMethods::getLine();
-    cout << "Wpisz date koncowa w formacie rrrr-mm-dd: ";
-    string finalDate = AuxiliaryMethods::getLine();
-
-    if(Date::isDateCorrect(initialDate) && Date::isDateCorrect(finalDate))
+    while(true)
     {
-        int initialDateInt = AuxiliaryMethods::dateConversionToInt(initialDate);
-        int finalDateInt = AuxiliaryMethods::dateConversionToInt(finalDate);
-        cout << "       >>> Przychody <<<" << endl;
-        sort(incomes.begin(), incomes.end() );
-        for(int i = 0; i < incomes.size(); i++)
-        {
-            if(incomes[i].getDate() >= initialDateInt && incomes[i].getDate() <= finalDateInt)
-            {
-                cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
-                cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
-                cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
-                cout << "****************" << endl;
-                sumOfIncomes += incomes[i].getAmount();
-            }
-        }
-        cout << endl << "       >>> Wydatki <<<" << endl;
+        system("cls");
+        cout << "***BILANS Z WYBRANEGO OKRESU***" << endl << endl;
+        cout << "Wpisz date poczatkowa w formacie rrrr-mm-dd: ";
+        string initialDate = AuxiliaryMethods::getLine();
+        cout << "Wpisz date koncowa w formacie rrrr-mm-dd: ";
+        string finalDate = AuxiliaryMethods::getLine();
 
-        sort(expenses.begin(), expenses.end() );
-        for(int j = 0; j < expenses.size(); j++)
+        if(Date::isDateCorrect(initialDate) && Date::isDateCorrect(finalDate))
         {
-            if(expenses[j].getDate() >= initialDateInt && expenses[j].getDate() <= finalDateInt)
+            int initialDateInt = AuxiliaryMethods::dateConversionToInt(initialDate);
+            int finalDateInt = AuxiliaryMethods::dateConversionToInt(finalDate);
+            cout << "       >>> Przychody <<<" << endl;
+            sort(incomes.begin(), incomes.end() );
+            for(int i = 0; i < incomes.size(); i++)
             {
-                cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
-                cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
-                cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
-                cout << "****************" << endl;
-                sumOfExpenses += expenses[j].getAmount();
+                if(incomes[i].getDate() >= initialDateInt && incomes[i].getDate() <= finalDateInt)
+                {
+                    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(incomes[i].getDate()) << endl;
+                    cout << "Kategoria przychodu: " << incomes[i].getItem() << endl;
+                    cout << "Kwota:               " << incomes[i].getAmount() << " zl" << endl;
+                    cout << "****************" << endl;
+                    sumOfIncomes += incomes[i].getAmount();
+                }
             }
+            cout << endl << "       >>> Wydatki <<<" << endl;
+
+            sort(expenses.begin(), expenses.end() );
+            for(int j = 0; j < expenses.size(); j++)
+            {
+                if(expenses[j].getDate() >= initialDateInt && expenses[j].getDate() <= finalDateInt)
+                {
+                    cout << "Data:                " << AuxiliaryMethods::dateConversionToString(expenses[j].getDate()) << endl;
+                    cout << "Kategoria wydatku:   " << expenses[j].getItem() << endl;
+                    cout << "Kwota:               " << expenses[j].getAmount() << " zl" << endl;
+                    cout << "****************" << endl;
+                    sumOfExpenses += expenses[j].getAmount();
+                }
+            }
+            balance = sumOfIncomes - sumOfExpenses;
+            cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
+            cout << "Suma wydatkow: " << sumOfExpenses << " zl" << endl;
+            cout << "Saldo: " << balance << " zl" << endl;
+            system("pause");
+            return;
         }
-        balance = sumOfIncomes - sumOfExpenses;
-        cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
-        cout << "Suma wydatkow: " << sumOfExpenses << " zl" << endl;
-        cout << "Saldo: " << balance << " zl" << endl;
-        system("pause");
-    }
-    else
-    {
-        cout << "Wprowadziles niepoprawna date!" << endl;
-        system("pause");
+        else
+        {
+            cout << "Wprowadziles niepoprawne daty! Sprobuj ponownie." << endl;
+            system("pause");
+        }
     }
 }

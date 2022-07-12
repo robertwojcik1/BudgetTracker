@@ -79,9 +79,5 @@ vector <Expense> FileWithExpenses::loadExpensesFromFile(vector <Expense> expense
         return expenses;
     }
     else
-    {
-        cout << "Nie odnaleziono pliku z wydatkami!" << endl;
-        system("pause");
         return expenses;
-    }
 }

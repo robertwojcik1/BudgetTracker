@@ -80,9 +80,5 @@ vector<Income> FileWithIncomes::loadIncomesFromFile(vector<Income> incomes, int 
         return incomes;
     }
     else
-    {
-        cout << "Nie odnaleziono pliku z przychodami!" << endl;
-        system("pause");
         return incomes;
-    }
 }
