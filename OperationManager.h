@@ -28,12 +28,11 @@ class OperationManager
     void addIncomeWithEnteredDate(int LOGGED_IN_USER_ID);
     char selectIncomeCategory();
     string enterIncomeCategory();
-    double enterIncomeAmount();
+    double enterAmount();
     char selectOptionFromAddExpenseMenu();
     void addExpenseWithCurrentDate(int LOGGED_IN_USER_ID);
     char selectExpenseCategory();
     string enterExpenseCategory();
-    double enterExpenseAmount();
     void addExpenseWithEnteredDate(int LOGGED_IN_USER_ID);
 public:
     OperationManager(string fileWithIncomesName, string fileWithExpensesName, int loggedInUserId) : fileWithIncomes(fileWithIncomesName), fileWithExpenses(fileWithExpensesName), LOGGED_IN_USER_ID(loggedInUserId)

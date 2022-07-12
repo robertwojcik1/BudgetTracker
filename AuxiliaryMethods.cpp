@@ -104,3 +104,14 @@ string AuxiliaryMethods::dateConversionToString(int date)
 
     return dateString;
 }
+
+bool AuxiliaryMethods::checkIfAmountIsCorrect(string amountStr)
+{
+    bool isCorrect = true;
+    for(int i = 0; i < amountStr.length(); i++)
+    {
+        if(!isdigit(amountStr[i]) && amountStr[i] != '.' && amountStr[i] != ',')
+            isCorrect = false;
+    }
+    return isCorrect;
+}

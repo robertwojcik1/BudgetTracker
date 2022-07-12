@@ -3,6 +3,9 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 using namespace std;
 
@@ -18,6 +21,7 @@ public:
     static string getLine();
     static char getChar();
     static int getInteger();
+    static bool checkIfAmountIsCorrect(string amountStr);
 };
 
 #endif

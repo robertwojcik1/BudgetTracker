@@ -26,7 +26,7 @@ void OperationManager::addIncomeWithCurrentDate(int LOGGED_IN_USER_ID)
         system("pause");
     }
 
-    incomeAmount = enterIncomeAmount();
+    incomeAmount = enterAmount();
     income.setId(fileWithIncomes.getLastIncomeId() + 1);
     income.setUserId(LOGGED_IN_USER_ID);
     income.setDate(AuxiliaryMethods::dateConversionToInt(date));
@@ -71,7 +71,7 @@ void OperationManager::addIncomeWithEnteredDate(int LOGGED_IN_USER_ID)
                 cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
                 system("pause");
             }
-            incomeAmount = enterIncomeAmount();
+            incomeAmount = enterAmount();
             income.setId(fileWithIncomes.getLastIncomeId() + 1);
             income.setUserId(LOGGED_IN_USER_ID);
             income.setDate(AuxiliaryMethods::dateConversionToInt(date));
@@ -118,13 +118,28 @@ string OperationManager::enterIncomeCategory()
     return newIncomeCategory;
 }
 
-double OperationManager::enterIncomeAmount()
+double OperationManager::enterAmount()
 {
-    double incomeAmount = 0.0;
-    cout << "Wprowadz wysokosc przychodu: ";
-    incomeAmount = AuxiliaryMethods::stringToDoubleConversion(AuxiliaryMethods::getLine());
+    double amount = 0.0;
+    string amountStr = "";
 
-    return incomeAmount;
+    while(true)
+    {
+        system("cls");
+        cout << "Wprowadz kwote operacji: ";
+        amountStr = AuxiliaryMethods::getLine();
+
+        if(AuxiliaryMethods::checkIfAmountIsCorrect(amountStr))
+        {
+            amount = AuxiliaryMethods::stringToDoubleConversion(amountStr);
+            return amount;
+        }
+        else
+        {
+            cout << "Wprowadzono nieprawidlowa kwote. Kwota musi sie skladac wylacznie z cyfr oraz przecinka lub kropki. Wprowadz ponownie." << endl;
+            system("pause");
+        }
+    }
 }
 
 void OperationManager::addIncome(int LOGGED_IN_USER_ID)
@@ -216,7 +231,7 @@ void OperationManager::addExpenseWithCurrentDate(int LOGGED_IN_USER_ID)
         cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
         system("pause");
     }
-    expenseAmount = enterExpenseAmount();
+    expenseAmount = enterAmount();
     expense.setId(fileWithExpenses.getLastExpenseId() + 1);
     expense.setUserId(LOGGED_IN_USER_ID);
     expense.setDate(AuxiliaryMethods::dateConversionToInt(date));
@@ -255,15 +270,6 @@ string OperationManager::enterExpenseCategory()
     newExpenseCategory = AuxiliaryMethods::getLine();
 
     return newExpenseCategory;
-}
-
-double OperationManager::enterExpenseAmount()
-{
-    double expenseAmount = 0.0;
-    cout << "Wprowadz wysokosc wydatku: ";
-    expenseAmount = AuxiliaryMethods::stringToDoubleConversion(AuxiliaryMethods::getLine());
-
-    return expenseAmount;
 }
 
 void OperationManager::addExpenseWithEnteredDate(int LOGGED_IN_USER_ID)
@@ -306,7 +312,7 @@ void OperationManager::addExpenseWithEnteredDate(int LOGGED_IN_USER_ID)
                 cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
                 system("pause");
             }
-            expenseAmount = enterExpenseAmount();
+            expenseAmount = enterAmount();
             expense.setId(fileWithExpenses.getLastExpenseId() + 1);
             expense.setUserId(LOGGED_IN_USER_ID);
             expense.setDate(AuxiliaryMethods::dateConversionToInt(date));
